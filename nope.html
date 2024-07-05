@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>subtist</title>
+    <link rel="stylesheet" href="assets/styles/base.css">
+    <link rel="stylesheet" href="assets/styles/home.css">
+    <script defer src="assets/scripts/base.js"></script>
+    <link rel="shortcut icon" href="assets/images/logo.png" type="image/png">
+</head>
+
+<body>
+    <background></background>
+    <header>
+        <div>
+            <img src="assets/images/logo_cropped.png" alt="logo">
+            <h1>subtist</h1>
+        </div>
+        <h2><span style="color:#ff6161">swift</span> and <span style="color:#8153ff">silent</span></h2>
+    </header>
+    <button class="sidebar" id="sideBarOpen" onclick="toggleSidebar(true)">☰</button>
+    <sidebar id="sideBar">
+        <button onclick="toggleSidebar(false)">X</button>
+        <br><br>
+        <button onclick="window.location.href = 'index.html'">Home</button>
+        <button onclick="window.location.href = 'nope.html'">GIFs</button>
+        <button onclick="window.location.href = 'nope.html'">Audio</button>
+        <button onclick="window.location.href = 'nope.html'">Editor</button>
+        <button onclick="window.location.href = 'nope.html'">Logbook</button>
+    </sidebar>
+
+    <main>
+        <h1 id="scriptAmount" class="page-description">Coming soon!</h1>
+    </main>
+</body>
+
+</html>

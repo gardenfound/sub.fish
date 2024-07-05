@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #101010;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: "Ubuntu Mono", monospace;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+background {
+    z-index: -1;
+    background: linear-gradient(to top, #100000, #000010);
+    margin: 0;
+    position: fixed;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    height: max-content;
+    margin: 40px;
+    width: 80%;
+
+    div {
+        display: flex;
+        align-items: center;
+
+        h1 {
+            font-size: 2rem;
+            color: #f4f4f9;
+            text-align: left;
+            margin: 0;
+        }
+
+        img {
+            max-height: 25px;
+            padding-right: 10px;
+        }
+    }
+
+    h2 {
+        font-size: 1rem;
+        color: #f4f4f9;
+        text-align: left;
+        margin: 0;
+    }
+}
+
+button.sidebar {
+    position: fixed;
+    top: 12px;
+    right: 10px;
+    width: 140px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    transition: all 0.25s ease, right 0.5s ease;
+    color: var(--text);
+    background-color: #fff2;
+    border-style: solid;
+    border-color: #fff9;
+    border-radius: 10px;
+    border-width: 2px;
+}
+
+button.sidebar:hover {
+    background-color: #ffffff43;
+    cursor: pointer;
+}
+
+button.sidebar.hide {
+    right: -200px;
+}
+
+.clipboard-notification {
+    z-index: 100;
+    border-radius: 10px;
+    position: fixed;
+    bottom: -0px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    border-style: none;
+    color: white;
+    padding: 10px 20px;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.clipboard-notification.show {
+    bottom: 20px;
+    opacity: 1;
+}
+
+sidebar {
+    height: calc(100% - 15px);
+    position: fixed;
+    right: -200px;
+    top: 0;
+    background-color: #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    padding-inline: 10px;
+    padding-top: 10px;
+    z-index: 10;
+    transition: all 0.5s ease;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: #fff2;
+    border-style: solid;
+    border-color: #fff9;
+    border-width: 2px;
+
+    button {
+        font-family: "Ubuntu Mono", monospace;
+        font-size: 20px;
+        width: 100%;
+        color: white;
+        text-align: center;
+        height: 40px;
+        margin-bottom: 10px;
+        transition: all 0.25s ease;
+        color: var(--text);
+        background-color: #fff2;
+        border-style: solid;
+        border-color: #fff9;
+        border-radius: 10px;
+        border-width: 2px;
+    }
+
+    button:hover {
+        background-color: #ffffff43;
+        cursor: pointer;
+    }
+}
+
+sidebar.show {
+    right: 0;
+}
+
+main {
+    align-self: center;
+    width: 80%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+@media only screen and (max-width: 800px) {
+    .main {
+        width: 95%;
+    }
+}

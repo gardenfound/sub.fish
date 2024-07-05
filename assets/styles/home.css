@@ -1,0 +1,237 @@
+:root {
+    --text: #f4f4f9;
+    --background: #1e1e1e;
+    --hover: #ffffff43;
+}
+
+#searchBar {
+    align-self: center;
+    user-select: none;
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 30px;
+    color: var(--text);
+    font-family: "Ubuntu Mono", monospace;
+    z-index: 1;
+
+    color: var(--text);
+    background-color: #fff2;
+    border-style: solid;
+    border-color: #fff9;
+    border-radius: 10px;
+    border-width: 2px;
+}
+
+#searchBar:focus {
+    outline: none;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--background);
+    font-family: "Ubuntu Mono", monospace;
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 80%;
+
+    color: var(--text);
+    background-color: #fff2;
+    border-style: solid;
+    border-color: #fff9;
+    border-width: 2px;
+    backdrop-filter: blur(2.5px);
+}
+
+.grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    z-index: 1;
+
+    button {
+        user-select: none;
+        padding: 5px 10px;
+        margin: 10px;
+        color: var(--text);
+        background-color: #fff2;
+        border-style: solid;
+        border-color: #fff9;
+        border-radius: 10px;
+        border-width: 2px;
+        cursor: pointer;
+        transition: all 0.3s;
+        z-index: 1;
+        width: 250px;
+
+        span{
+            margin-bottom: 20px;
+        }
+    }
+
+    button:hover {
+        scale: 1.03;
+        background-color: #fff3;
+        z-index: 1;
+        opacity: 1;
+        cursor: pointer;
+        transition: ease all 0.25s;
+    }
+}
+
+label{
+    width: 60%;
+    padding: 10px;
+
+    select{
+        background-color: #fff2;
+        border-style: solid;
+        border-color: #fff9;
+        border-radius: 10px;
+        border-width: 2px;
+        color: var(--text);
+
+        option{
+            background-color: #101010;
+        }
+    }
+}
+
+#copyButton {
+    user-select: none;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    transition: all 0.25s ease;
+    color: var(--text);
+    background-color: #fff2;
+    border-style: solid;
+    border-color: #fff9;
+    border-width: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+#copyButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 500%;
+    background: linear-gradient(to right, #ffafaf, #afafff, #ffafaf, #afafff, #ffafaf);
+    z-index: -1;
+    transition: opacity 0.25s ease;
+    opacity: 0;
+    animation: scrollGradient 3s linear infinite;
+}
+
+#copyButton:hover::before {
+    opacity: 1;
+}
+
+@keyframes scrollGradient {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+#copyButton:hover {
+    color: #101010;
+    scale: 1.01;
+    z-index: 1;
+}
+
+
+#scriptCode {
+    padding-top: 20px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    user-select:text;
+    color: var(--text);
+}
+
+#scriptName {
+    user-select: none;
+    color: var(--text);
+    font-family: "Ubuntu Mono", monospace;
+}
+
+#scriptDescription {
+    user-select: none;
+    padding-top: 9px;
+    color: var(--text);
+    font-family: "Ubuntu Mono", monospace;
+}
+
+#scriptAmount{
+    color: var(--hover);
+}   
+
+@media only screen and (max-width: 800px) {
+    .grid {
+        button {
+            width: 40%;
+    
+            span{
+                margin-bottom: 20px;
+            }
+        }
+    }
+    
+    .modal-content {
+        background-color: var(--background);
+        font-family: "Ubuntu Mono", monospace;
+        border-radius: 20px;
+        padding: 20px;
+        max-width: 80%;
+        max-height: 60%;
+    
+        color: var(--text);
+        background-color: #fff2;
+        border-style: solid;
+        border-color: #fff9;
+        border-width: 2px;
+        backdrop-filter: blur(2.5px);
+    }
+
+    #scriptCode {
+        overflow-y: scroll;
+        max-height: 200px;
+    }
+    
+    #scriptName {
+        user-select: none;
+        color: var(--text);
+        font-family: "Ubuntu Mono", monospace;
+    }
+    
+    #scriptDescription {
+        user-select: none;
+        padding-top: 9px;
+        color: var(--text);
+        font-family: "Ubuntu Mono", monospace;
+    }
+}

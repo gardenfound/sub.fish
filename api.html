@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="result"></div>
+
+    <script type="module">
+        // fetchScripts.js
+        export async function fetchScripts() {
+            const response = await fetch('/assets/data/temp.json');
+            const data = await response.json();
+            return data.scripts;
+        }
+
+        // randomScript.js
+        export async function getRandomScript() {
+            const scripts = await fetchScripts();
+            const randomIndex = Math.floor(Math.random() * scripts.length);
+            return scripts[randomIndex];
+        }
+
+        export async function searchScripts(query) {
+            const scripts = await fetchScripts();
+            return scripts.filter(script => 
+                script.name.toLowerCase().includes(query.toLowerCase()) ||
+                script.description.toLowerCase().includes(query.toLowerCase())
+            );
+        }
+
+        export async function getScriptByIndex(index) {
+            const scripts = await fetchScripts();
+            return scripts[index] || null;
+        }
+
+        export async function handleRequest(url) {
+            const urlParts = url.split('/');
+            const endpoint = urlParts[2];
+
+            try {
+                if (endpoint === 'random') {
+                    const randomScript = await getRandomScript();
+                    return randomScript;
+                } else if (endpoint === 'search') {
+                    const query = urlParts[3];
+                    if (!query) throw new Error('Search query missing');
+                    const results = await searchScripts(query);
+                    return results;
+                } else if (!isNaN(endpoint)) {
+                    const index = parseInt(endpoint, 10);
+                    const script = await getScriptByIndex(index);
+                    if (!script) throw new Error('Index out of range');
+                    return script;
+                } else {
+                    throw new Error('Invalid endpoint');
+                }
+            } catch (error) {
+                return { error: error.message };
+            }
+        }
+
+        async function showResult(url) {
+            const resultDiv = document.getElementById('result');
+            const result = await handleRequest(url);
+            resultDiv.innerHTML = JSON.stringify(result, null, 2);
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const endpoint = urlParams.get('endpoint');
+        if (endpoint) {
+            showResult(endpoint);
+        } else {
+            document.getElementById('result').innerText = 'No endpoint specified.';
+        }
+    </script>
+</body>
+</html>
