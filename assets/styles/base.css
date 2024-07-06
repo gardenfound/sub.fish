@@ -72,6 +72,7 @@ button.sidebar {
 
 button.sidebar:hover {
     background-color: #ffffff43;
+    scale: 1.03;
     cursor: pointer;
 }
 
@@ -138,6 +139,7 @@ sidebar {
 
     button:hover {
         background-color: #ffffff43;
+        scale: 1.03;
         cursor: pointer;
     }
 }

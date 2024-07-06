@@ -20,10 +20,12 @@
     border-color: #fff9;
     border-radius: 10px;
     border-width: 2px;
+    transition: all ease 0.25s;
 }
 
 #searchBar:focus {
     outline: none;
+    background-color: #fff3;
 }
 
 .modal {
@@ -70,6 +72,7 @@
         margin: 10px;
         color: var(--text);
         background-color: #fff2;
+        backdrop-filter: saturate(2.5);
         border-style: solid;
         border-color: #fff9;
         border-radius: 10px;
@@ -160,7 +163,6 @@ label{
 
 #copyButton:hover {
     color: #101010;
-    scale: 1.01;
     z-index: 1;
 }
 
