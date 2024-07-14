@@ -2,8 +2,12 @@ const notification = document.getElementById('clipboard-notification');
 const sidebar = document.getElementById('sideBar');
 const sideBarOpen = document.getElementById('sideBarOpen');
 
-function showNotification() {
-    // if it already has the show class, return here
+function showNotification(message, hex) {
+    if(notification.classList.contains('show')){ // already running? don't do shit!
+        return;
+    }
+    notification.style.backgroundColor = hex;
+    notification.textContent = message;
     notification.classList.add('show');
     setTimeout(() => {
         notification.classList.remove('show');

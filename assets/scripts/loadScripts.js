@@ -5,9 +5,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchBar = document.getElementById('searchBar');
     const scriptAmount = document.getElementById('scriptAmount');
     const searchScope = document.getElementById('searchScope');
-    const filterEmptyScripts = document.getElementById('filterEmptyScripts');
+    const showEmptyScripts = document.getElementById('showEmptyScripts');
     const scriptLength = document.getElementById('scriptLength');
     const sortBy = document.getElementById('sortBy');
+    const favoriteButton = document.getElementById('favoriteButton');
+
+    const settingsMenuHeight = '160px';
+
+    let favoriteScripts = JSON.parse(localStorage.getItem('favoriteScripts')) || [];
+
+    document.getElementById('settingsButton').addEventListener('click', function() {
+        var settingsMenu = document.getElementById('searchSettings');
+        settingsMenu.style.height = (settingsMenu.style.height === settingsMenuHeight) ? '0px' : settingsMenuHeight;
+        settingsMenu.style.opacity = (settingsMenu.style.height === settingsMenuHeight) ? '1' : '0';
+    });
 
     fetch('assets/data/scripts.json')
         .then(response => response.json())
@@ -18,19 +29,23 @@ document.addEventListener('DOMContentLoaded', function () {
                     const button = document.createElement('button');
                     const title = document.createElement('span');
                     const description = document.createElement('span');
+                    const favoriteIcon = document.createElement('img');
 
                     title.textContent = script.name;
-                    title.style.fontSize = '20px';
-                    title.style.fontWeight = 'bold';
-                    title.style.fontFamily = '"Ubuntu Mono", monospace';
+                    title.classList.add('gridButtonTitle');
                     description.textContent = script.description;
-                    description.style.fontFamily = '"Ubuntu Mono", monospace';
-                    description.style.fontSize = '12px';
-                    description.style.color = '#aaa';
+                    description.classList.add('gridButtonDescription');
+
+                    favoriteIcon.src = 'assets/images/icons/favorite.png';
+                    favoriteIcon.classList.add('favorite-icon');
+                    if (favoriteScripts.includes(script.name)) {
+                        favoriteIcon.classList.add('favorited');
+                    }
 
                     button.appendChild(title);
                     button.appendChild(document.createElement('br'));
                     button.appendChild(description);
+                    button.appendChild(favoriteIcon);
 
                     if (script.script === "") {
                         button.style.opacity = 0.35;
@@ -42,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         document.getElementById('scriptDescription').textContent = script.description;
                         document.getElementById('scriptCode').textContent = script.script;
                         document.getElementById('copyButton').style.display = script.script == "" ? "none" : "block";
+                        favoriteButton.classList.toggle('favorited', favoriteScripts.includes(script.name));
+                        favoriteButton.onclick = () => toggleFavorite(script.name);
                         modal.style.display = "flex";
                     });
 
@@ -65,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const matchSearch = searchScopeValue === 'title' ? searchInTitle :
                         searchScopeValue === 'titleAndDescription' ? (searchInTitle || searchInDescription) :
                         (searchInTitle || searchInDescription || searchInScript);
-                    const matchEmptyFilter = !filterEmptyScripts.checked || script.script !== "";
+                    const matchEmptyFilter = showEmptyScripts.checked || script.script !== "";
                     const wordCount = getWordCount(script.script);
                     const matchLength = scriptLength.value === 'all' ||
                         (scriptLength.value === 'short' && wordCount < 100) ||
@@ -80,16 +97,35 @@ document.addEventListener('DOMContentLoaded', function () {
                     filteredScripts.sort((a, b) => a.name.localeCompare(b.name));
                 }
 
+                // fav scripts on top
+                filteredScripts.sort((a, b) => {
+                    const aFavorited = favoriteScripts.includes(a.name);
+                    const bFavorited = favoriteScripts.includes(b.name);
+                    return bFavorited - aFavorited;
+                });
+
                 renderScripts(filteredScripts);
+            }
+
+            function toggleFavorite(scriptName) {
+                if (favoriteScripts.includes(scriptName)) {
+                    favoriteScripts = favoriteScripts.filter(name => name !== scriptName);
+                } else {
+                    favoriteScripts.push(scriptName);
+                }
+                localStorage.setItem('favoriteScripts', JSON.stringify(favoriteScripts));
+                favoriteButton.classList.toggle('favorited', favoriteScripts.includes(scriptName));
+                filterAndSortScripts();
             }
 
             searchBar.addEventListener('keyup', filterAndSortScripts);
             searchScope.addEventListener('change', filterAndSortScripts);
-            filterEmptyScripts.addEventListener('change', filterAndSortScripts);
+            showEmptyScripts.addEventListener('change', filterAndSortScripts);
             scriptLength.addEventListener('change', filterAndSortScripts);
             sortBy.addEventListener('change', filterAndSortScripts);
 
             renderScripts(data.scripts);
+            filterAndSortScripts();
         });
 
     modal.addEventListener('click', (event) => {
@@ -105,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.getSelection().removeAllRanges();
         window.getSelection().addRange(range);
         document.execCommand('copy');
-        showNotification();
+        showNotification('Copied to clipboard', '#4caf50');
         window.getSelection().removeAllRanges();
     });
 });

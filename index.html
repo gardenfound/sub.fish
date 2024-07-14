@@ -26,49 +26,56 @@
         <button onclick="toggleSidebar(false)">X</button>
         <br><br>
         <button onclick="window.location.href = 'index.html'">Home</button>
-        <button onclick="window.location.href = 'nope.html'">GIFs</button>
-        <button onclick="window.location.href = 'nope.html'">Audio</button>
-        <br>
-        <button onclick="window.location.href = 'nope.html'">Editor</button>
-        <button onclick="window.location.href = 'nope.html'">Updates</button>
-        <button onclick="window.location.href = 'nope.html'">Resources</button>
-        <br>
-        <button onclick="window.location.href = 'nope.html'">About</button>
-        <button onclick="window.location.href = 'nope.html'">Contact</button>
+        <!-- <button onclick="window.location.href = 'index.html'">Presets</button> -->
+        <!-- <br> -->
+        <!-- <button onclick="window.location.href = 'index.html'">Editor</button> -->
+        <!-- <button onclick="window.location.href = 'index.html'">Updates</button> -->
+        <!-- <button onclick="window.location.href = 'index.html'">Resources</button> -->
+        <!-- <br> -->
+        <!-- <button onclick="window.location.href = 'index.html'">Contact</button> -->
+        <button onclick="window.location.href = 'https\:\/\/github.com/gardenfound/subtist'">GitHub Repo</button>
     </sidebar>
     <div id="clipboard-notification" class="clipboard-notification">Copied to clipboard</div>
 
     <main>
-        <input type="text" id="searchBar" placeholder="Search scripts...">
-        <label>
-            Search Scope:
-            <select id="searchScope">
-                <option value="title">Title</option>
-                <option value="titleAndDescription">Title and description</option>
-                <option value="titleDescriptionAndScript">Title, description, and script</option>
-            </select>
-        </label>
-        <label>
-            Filter Empty Scripts
-            <input type="checkbox" id="filterEmptyScripts" checked>
-        </label>
-        <label>
-            Script Length:
-            <select id="scriptLength">
-                <option value="all">All</option>
-                <option value="short">Short (&lt; 100 words)</option>
-                <option value="medium">Medium (100-250 words)</option>
-                <option value="long">Long (&gt; 250 words)</option>
-            </select>
-        </label>
-        <label>
-            Sort by:
-            <select id="sortBy">
-                <option value="index">Index</option>
-                <option value="length">Length</option>
-                <option value="alphabetical">Alphabetical</option>
-            </select>
-        </label>
+        <div class="search-bar-container">
+            <input type="text" id="searchBar" placeholder="Search scripts...">
+            <button id="settingsButton" class="settings-button">
+                <img src="assets/images/icons/settings.png" alt="Settings">
+            </button>
+        </div>
+        <div id="searchSettings">
+            <label>
+                Search Scope:
+                <select id="searchScope">
+                    <option value="title">Title</option>
+                    <option value="titleAndDescription">Title and description</option>
+                    <option value="titleDescriptionAndScript">Title, description, and script</option>
+                </select>
+            </label>
+            <label>
+                Show Empty Scripts
+                <input type="checkbox" id="showEmptyScripts">
+            </label>
+            <label>
+                Script Length:
+                <select id="scriptLength">
+                    <option value="all">All</option>
+                    <option value="short">Short (&lt; 100 words)</option>
+                    <option value="medium">Medium (100-250 words)</option>
+                    <option value="long">Long (&gt; 250 words)</option>
+                </select>
+            </label>
+            <label>
+                Sort by:
+                <select id="sortBy">
+                    <option value="index">Index</option>
+                    <option value="length">Length</option>
+                    <option value="alphabetical">Alphabetical</option>
+                </select>
+            </label>
+        </div>
+
         <br><br>
 
         <div id="scriptsGrid" class="grid"></div>
@@ -79,6 +86,7 @@
                 <p id="scriptDescription"></p>
                 <p id="scriptCode"></p>
                 <button id="copyButton"><b>Copy Script</b></button>
+                <button id="favoriteButton" class="favorite-button"><img src="assets/images/icons/favorite.png"></button>
             </div>
         </div>
 
