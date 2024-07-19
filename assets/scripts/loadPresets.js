@@ -2,18 +2,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('modal');
     const modalContent = document.getElementById('modal-content');
     modal.style.display = 'none';
-    const scriptsGrid = document.getElementById('scriptsGrid');
+    const scriptsGrid = document.getElementById('presetsGrid');
     const searchBar = document.getElementById('searchBar');
-    const scriptAmount = document.getElementById('scriptAmount');
+    const scriptAmount = document.getElementById('presetAmount');
     const searchScope = document.getElementById('searchScope');
-    const showEmptyScripts = document.getElementById('showEmptyScripts');
-    const scriptLength = document.getElementById('scriptLength');
+    const showEmptyScripts = document.getElementById('showEmptyPresets');
+    const scriptLength = document.getElementById('presetLength');
     const sortBy = document.getElementById('sortBy');
     const favoriteButton = document.getElementById('favoriteButton');
 
     const settingsMenuHeight = '160px';
 
-    let favoriteScripts = JSON.parse(localStorage.getItem('favoriteScripts')) || [];
+    let favoritePresets = JSON.parse(localStorage.getItem('favoritePresets')) || [];
 
     document.getElementById('settingsButton').addEventListener('click', function() {
         var settingsMenu = document.getElementById('searchSettings');
@@ -21,45 +21,41 @@ document.addEventListener('DOMContentLoaded', function () {
         settingsMenu.style.opacity = (settingsMenu.style.height === settingsMenuHeight) ? '1' : '0';
     });
 
-    fetch('assets/data/scripts.json')
+    fetch('assets/data/presets.json')
         .then(response => response.json())
         .then(data => {
-            function renderScripts(scripts) {
+            function renderPresets(presets) {
                 scriptsGrid.innerHTML = '';
-                scripts.forEach(script => {
+                presets.forEach(preset => {
                     const button = document.createElement('button');
                     const title = document.createElement('span');
-                    const description = document.createElement('span');
                     const favoriteIcon = document.createElement('img');
 
-                    title.textContent = script.name;
+                    title.textContent = preset.name;
                     title.classList.add('gridButtonTitle');
-                    description.textContent = script.description;
-                    description.classList.add('gridButtonDescription');
+                    button.classList.add('preset');
 
                     favoriteIcon.src = 'assets/images/icons/favorite.png';
                     favoriteIcon.classList.add('favorite-icon');
-                    if (favoriteScripts.includes(script.name)) {
+                    if (favoritePresets.includes(preset.name)) {
                         favoriteIcon.classList.add('favorited');
                     }
 
                     button.appendChild(title);
                     button.appendChild(document.createElement('br'));
-                    button.appendChild(description);
                     button.appendChild(favoriteIcon);
 
-                    if (script.script === "") {
+                    if (preset.words === "") {
                         button.style.opacity = 0.35;
                         button.style.filter = "blur(1.2px)";
                     }
 
                     button.addEventListener('click', () => {
-                        document.getElementById('scriptName').textContent = script.name;
-                        document.getElementById('scriptDescription').textContent = script.description;
-                        document.getElementById('scriptCode').textContent = script.script;
-                        document.getElementById('copyButton').style.display = script.script == "" ? "none" : "block";
-                        favoriteButton.classList.toggle('favorited', favoriteScripts.includes(script.name));
-                        favoriteButton.onclick = () => toggleFavorite(script.name);
+                        document.getElementById('presetName').textContent = preset.name;
+                        document.getElementById('presetWords').textContent = preset.words;
+                        document.getElementById('copyButton').style.display = preset.words == "" ? "none" : "block";
+                        favoriteButton.classList.toggle('favorited', favoritePresets.includes(preset.name));
+                        favoriteButton.onclick = () => toggleFavorite(preset.name);
 
                         modal.style.display = "flex";
                         setTimeout(() => {
@@ -71,56 +67,53 @@ document.addEventListener('DOMContentLoaded', function () {
                     scriptsGrid.appendChild(button);
                 });
 
-                scriptAmount.textContent = `${scripts.length} script${scripts.length !== 1 ? 's' : ''} found`;
+                scriptAmount.textContent = `${presets.length} preset${presets.length !== 1 ? 's' : ''} found`;
             }
 
             function getWordCount(text) {
-                return text.trim().split(/\s+/).length;
+                return text.trim().split(',').length;
             }
 
             function filterAndSortScripts() {
                 const searchValue = searchBar.value.toLowerCase();
-                let filteredScripts = data.scripts.filter(script => {
-                    const searchInTitle = script.name.toLowerCase().includes(searchValue);
-                    const searchInDescription = script.description.toLowerCase().includes(searchValue);
-                    const searchInScript = script.script.toLowerCase().includes(searchValue);
+                let filteredScripts = data.presets.filter(preset => {
+                    const searchInTitle = preset.name.toLowerCase().includes(searchValue);
+                    const searchInWords = preset.words.toLowerCase().includes(searchValue);
                     const searchScopeValue = searchScope.value;
-                    const matchSearch = searchScopeValue === 'title' ? searchInTitle :
-                        searchScopeValue === 'titleAndDescription' ? (searchInTitle || searchInDescription) :
-                        (searchInTitle || searchInDescription || searchInScript);
-                    const matchEmptyFilter = showEmptyScripts.checked || script.script !== "";
-                    const wordCount = getWordCount(script.script);
+                    const matchSearch = searchScopeValue === 'title' ? searchInTitle : searchInWords;
+                    const matchEmptyFilter = showEmptyScripts.checked || preset.words !== "";
+                    const wordCount = getWordCount(preset.words);
                     const matchLength = scriptLength.value === 'all' ||
-                        (scriptLength.value === 'short' && wordCount < 100) ||
-                        (scriptLength.value === 'medium' && wordCount >= 100 && wordCount <= 250) ||
-                        (scriptLength.value === 'long' && wordCount > 250);
+                        (scriptLength.value === 'short' && wordCount < 20) ||
+                        (scriptLength.value === 'medium' && wordCount >= 20 && wordCount <= 40) ||
+                        (scriptLength.value === 'long' && wordCount > 40);
                     return matchSearch && matchEmptyFilter && matchLength;
                 });
 
                 if (sortBy.value === 'length') {
-                    filteredScripts.sort((a, b) => getWordCount(b.script) - getWordCount(a.script));
+                    filteredScripts.sort((a, b) => getWordCount(b.words) - getWordCount(a.words));
                 } else if (sortBy.value === 'alphabetical') {
                     filteredScripts.sort((a, b) => a.name.localeCompare(b.name));
                 }
 
                 // fav scripts on top
                 filteredScripts.sort((a, b) => {
-                    const aFavorited = favoriteScripts.includes(a.name);
-                    const bFavorited = favoriteScripts.includes(b.name);
+                    const aFavorited = favoritePresets.includes(a.name);
+                    const bFavorited = favoritePresets.includes(b.name);
                     return bFavorited - aFavorited;
                 });
 
-                renderScripts(filteredScripts);
+                renderPresets(filteredScripts);
             }
 
             function toggleFavorite(scriptName) {
-                if (favoriteScripts.includes(scriptName)) {
-                    favoriteScripts = favoriteScripts.filter(name => name !== scriptName);
+                if (favoritePresets.includes(scriptName)) {
+                    favoritePresets = favoritePresets.filter(name => name !== scriptName);
                 } else {
-                    favoriteScripts.push(scriptName);
+                    favoritePresets.push(scriptName);
                 }
-                localStorage.setItem('favoriteScripts', JSON.stringify(favoriteScripts));
-                favoriteButton.classList.toggle('favorited', favoriteScripts.includes(scriptName));
+                localStorage.setItem('favoritePresets', JSON.stringify(favoritePresets));
+                favoriteButton.classList.toggle('favorited', favoritePresets.includes(scriptName));
                 filterAndSortScripts();
             }
 
@@ -130,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
             scriptLength.addEventListener('change', filterAndSortScripts);
             sortBy.addEventListener('change', filterAndSortScripts);
 
-            renderScripts(data.scripts);
+            renderPresets(data.presets);
             filterAndSortScripts();
         });
 
@@ -145,9 +138,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('copyButton').addEventListener('click', () => {
-        const scriptCode = document.getElementById('scriptCode');
+        const presetWords = document.getElementById('presetWords');
         const range = document.createRange();
-        range.selectNode(scriptCode);
+        range.selectNode(presetWords);
         window.getSelection().removeAllRanges();
         window.getSelection().addRange(range);
         document.execCommand('copy');

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>subtist | editor</title>
+    <link rel="stylesheet" href="assets/styles/base.css">
+    <link rel="stylesheet" href="assets/styles/home.css">
+    <link rel="stylesheet" href="assets/styles/editor.css">
+    <script defer src="assets/scripts/base.js"></script>
+    <link rel="shortcut icon" href="assets/images/branding/logo_square.png" type="image/png">
+</head>
+
+<body>
+    <background></background>
+    <header>
+        <div>
+            <img src="assets/images/branding/logo_cropped.png" alt="logo">
+            <h1>subtist</h1>
+        </div>
+        <h2><span style="color:#ff6161">swift</span> and <span style="color:#8153ff">silent</span></h2>
+    </header>
+    <button class="sidebar" id="sideBarOpen" onclick="toggleSidebar(true)">☰</button>
+    <sidebar id="sideBar">
+        <button onclick="toggleSidebar(false)">X</button>
+        <br><br>
+        <button onclick="window.location.href = 'index.html'">Home</button>
+        <button onclick="window.location.href = 'presets.html'">Presets</button>
+        <button onclick="window.location.href = 'editor.html'">Editor</button>
+        <button onclick="window.location.href = 'resources.html'">Resources</button>
+        <br>
+        <button onclick="window.location.href = 'https\:\/\/github.com/gardenfound/subtist'">GitHub</button>
+        <button onclick="window.location.href = 'https\:\/\/discord.gg/m2VUJRxEWD'">Discord</button>
+    </sidebar>
+    <div id="clipboard-notification" class="clipboard-notification">Copied to clipboard</div>
+
+    <main>
+            <div class="actions">
+            <button id="add">Add</button>
+            <button id="export">Export</button>
+            <button id="import">Import</button>
+            <input type="file" id="json-file" style="display: none;">
+        </div>
+
+        <br><br>
+
+        <div id="scriptsGrid" class="grid"></div>
+
+        <div id="modal" class="modal">
+            <div id="modal-content" class="modal-content">
+                <input type="text" id="inputName">
+                <input type="text" id="inputDescription">
+                <textarea type="text" id="inputScript"></textarea>
+                <button id="copyButton"><b>Save Script</b></button>
+                <button id="deleteButton" class="deleteButton"><img src="assets/images/icons/delete.png"></button>
+            </div>
+        </div>
+
+        <h1 id="scriptAmount" class="page-description"></h1>
+    </main>
+</body>
+<script src="assets/scripts/editor.js"></script>
+
+</html>

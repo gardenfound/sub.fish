@@ -1,0 +1,48 @@
+div.buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+div.buttons button{
+    font-size: 20px;
+}
+
+.fancyButton{
+    position: relative;
+    backdrop-filter: saturate(2.5);
+    text-align: center;
+    transition: all 0.25s ease;
+    background-color: #fff2;
+    border-style: solid;
+    border-color: #fff9;
+    border-radius: 10px;
+    border-width: 2px;
+    padding: 5px 20px 5px 20px;
+    margin: 5px;
+
+    h1{
+        font-size: 20px;
+        color: var(--text);
+        font-family: "Ubuntu Mono", monospace;
+        font-weight: bold;
+        margin: 0px;
+        margin-top: 5px;
+    }
+    
+    p{
+        color: rgb(170, 170, 170);
+        font-size: 14px;
+        padding-top: 10px;
+        margin-top: 0px;
+        font-family: "Ubuntu Mono", monospace;
+    }
+}
+
+.fancyButton:hover{
+    background-color: #ffffff43;
+    scale: 1.03;
+    cursor: pointer;
+}

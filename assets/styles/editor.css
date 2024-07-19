@@ -1,0 +1,103 @@
+.modal input[type="text"],
+.modal textarea {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 8px;
+  background-color: var(--main);
+  color: var(--white);
+  max-height: 500px;
+
+  border-color: #fff9;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.modal textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.deleteButton {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: opacity 0.25s ease;
+
+    img {
+        -webkit-user-drag: none;
+        opacity: 0.4;
+        transition: opacity 0.25s ease;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.deleteButton:hover img {
+    opacity: 1;
+    transition: opacity 0.25s ease;
+}
+
+.deleteIcon {
+    position: absolute;
+    -webkit-user-drag: none;
+    top: 5px;
+    right: 5px;
+    height: 15px;
+    width: 15px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+input#inputName{
+    margin-top: 50px;
+}
+
+div.actions button {
+    user-select: none;
+    font-family: "Ubuntu Mono", monospace;
+    font-weight: bold;
+    padding: 10px;
+    position: relative;
+    margin: 10px;
+    color: var(--text);
+    background-color: #fff2;
+    backdrop-filter: saturate(2.5);
+    border-style: solid;
+    border-color: #fff9;
+    border-radius: 10px;
+    border-width: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 1;
+    width: 100px;
+
+    span {
+        margin-bottom: 20px;
+    }
+}
+
+div.actions button:hover {
+    scale: 1.03;
+    background-color: #fff3;
+    z-index: 1;
+    opacity: 1;
+    cursor: pointer;
+    transition: ease all 0.25s;
+}
+
+@media only screen and (max-width: 900px) {
+    div.actions button {
+        width: 70px;
+    }
+    .modal textarea {
+        resize: vertical;
+        min-height: 200px;
+      }
+}
