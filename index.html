@@ -7,8 +7,6 @@
     <title>subtist</title>
     <link rel="stylesheet" href="assets/styles/base.css">
     <link rel="stylesheet" href="assets/styles/home.css">
-    <script defer src="assets/scripts/base.js"></script>
-    <script defer src="assets/scripts/loadScripts.js"></script>
     <link rel="shortcut icon" href="assets/images/branding/logo_square.png" type="image/png">
 
     <!-- Metadata -->
@@ -41,74 +39,11 @@
         </div>
         <h2><span style="color:#ff6161">swift</span> and <span style="color:#8153ff">silent</span></h2>
     </header>
-    <button class="sidebar" id="sideBarOpen" onclick="toggleSidebar(true)">☰</button>
-    <sidebar id="sideBar">
-        <button onclick="toggleSidebar(false)">X</button>
-        <br><br>
-        <button onclick="window.location.href = 'index.html'">Home</button>
-        <button onclick="window.location.href = 'presets.html'">Presets</button>
-        <button onclick="window.location.href = 'editor.html'">Editor</button>
-        <br>
-        <button onclick="window.location.href = 'https\:\/\/github.com/gardenfound/subtist'">GitHub</button>
-        <button onclick="window.location.href = 'https\:\/\/discord.gg/m2VUJRxEWD'">Discord</button>
-    </sidebar>
-    <div id="clipboard-notification" class="clipboard-notification">Copied to clipboard</div>
 
     <main>
-        <div class="search-bar-container">
-            <input type="text" id="searchBar" placeholder="Search scripts...">
-            <button id="settingsButton" class="settings-button">
-                <img src="assets/images/icons/settings.png" alt="Settings">
-            </button>
-        </div>
-        <div id="searchSettings">
-            <label>
-                Search Scope:
-                <select id="searchScope">
-                    <option value="title">Title</option>
-                    <option value="titleAndDescription">Title and description</option>
-                    <option value="titleDescriptionAndScript">Title, description, and script</option>
-                </select>
-            </label>
-            <label>
-                Show Empty Scripts
-                <input type="checkbox" id="showEmptyScripts">
-            </label>
-            <label>
-                Script Length:
-                <select id="scriptLength">
-                    <option value="all">All</option>
-                    <option value="short">Short (&lt; 100 words)</option>
-                    <option value="medium">Medium (100-250 words)</option>
-                    <option value="long">Long (&gt; 250 words)</option>
-                </select>
-            </label>
-            <label>
-                Sort by:
-                <select id="sortBy">
-                    <option value="index">Index</option>
-                    <option value="length">Length</option>
-                    <option value="alphabetical">Alphabetical</option>
-                </select>
-            </label>
-        </div>
-
-        <br><br>
-
-        <div id="scriptsGrid" class="grid"></div>
-
-        <div id="modal" class="modal">
-            <div id="modal-content" class="modal-content">
-                <h2 id="scriptName"></h2>
-                <p id="scriptDescription"></p>
-                <p id="scriptCode"></p>
-                <button id="copyButton"><b>Copy Script</b></button>
-                <button id="favoriteButton" class="favorite-button"><img
-                        src="assets/images/icons/favorite.png"></button>
-            </div>
-        </div>
-
-        <h1 id="scriptAmount" class="page-description"></h1>
+        <p class="fancyTitle">This site is dedicated to hypnosis as a fetish and the sharing of hypnotic scripts, and thus is 18+ only.</p>
+        <p class="fancyDescription">By clicking on 'Continue' you state that you are of legal age and understand that you may be viewing adult content. Otherwise exit this site.</p>
+        <button class="fancyButton" onclick="window.location.href = 'home.html'">Continue</button>
     </main>
 </body>
 
