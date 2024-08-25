@@ -1,5 +1,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
+:root {
+    /* Default */
+    --text: #f4f4f9;
+    --background: #1e1e1e;
+    --hover: #ffffff43;
+    --scale-hover: 1.03;
+    --background: linear-gradient(to top, #100000, #000010);
+}
+
+:root.red {
+    --background: linear-gradient(0deg, hsl(0, 100%, 4%), hsl(0, 63%, 10%));
+}
+
+:root.orange {
+    --background: linear-gradient(0deg, hsl(24, 100%, 4%), hsl(24, 63%, 10%));
+}
+
+:root.yellow {
+    --background: linear-gradient(0deg, hsl(51, 100%, 4%), hsl(51, 63%, 10%));
+}
+
+:root.green {
+    --background: linear-gradient(0deg, hsl(96, 100%, 4%), hsl(96, 63%, 10%));
+}
+
+:root.cyan {
+    --background: linear-gradient(0deg, hsl(180, 100%, 4%), hsl(180, 63%, 10%));
+}
+
+:root.blue {
+    --background: linear-gradient(0deg, hsl(225, 100%, 4%), hsl(225, 63%, 10%));
+}
+
+:root.purple {
+    --background: linear-gradient(0deg, hsl(267, 100%, 4%), hsl(267, 63%, 10%));
+}
+
+:root.pink {
+    --background: linear-gradient(0deg, hsl(303, 100%, 4%), hsl(303, 63%, 10%));
+}
+
+:root.rainbow {
+    --background: linear-gradient(0deg, hsl(0, 63%, 10%), hsl(24, 63%, 10%), hsl(51, 63%, 10%), hsl(96, 63%, 10%), hsl(180, 63%, 10%), hsl(225, 63%, 10%), hsl(267, 63%, 10%), hsl(303, 63%, 10%));
+}
+
+:root.monochrome {
+    --background: #050505;
+}
+
+:root.bimbo {
+    --background: #800079;
+}
+
+:root.summer-haze {
+    --background: linear-gradient(to top, #240023, #301b00);
+}
+
+:root.matrix {
+    --background: linear-gradient(to top, #000500, #001600);
+}
+
+:root.hub {
+    --background: linear-gradient(to top, #683200, #000000);
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -14,7 +79,7 @@ body {
 
 background {
     z-index: -1;
-    background: linear-gradient(to top, #100000, #000010);
+    background: var(--background);
     margin: 0;
     position: fixed;
     padding: 0;
@@ -22,7 +87,7 @@ background {
     width: 100%;
 }
 
-.bigTitle{
+.bigTitle {
     font-size: 80px;
 }
 
@@ -105,13 +170,17 @@ button.sidebar.hide {
     opacity: 1;
 }
 
+#sideBarSaturator.show {
+    right: 0;
+}
+
 sidebar {
     height: calc(100% - 15px);
-    backdrop-filter: saturate(2.5);
     position: fixed;
     right: -200px;
     top: 0;
-    background-color: #1e1e1e;
+    background: var(--background);
+    backdrop-filter: saturate(2.5);
     display: flex;
     flex-direction: column;
     width: 140px;
@@ -121,10 +190,37 @@ sidebar {
     transition: all 0.5s ease;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    background-color: #fff2;
     border-style: solid;
     border-color: #fff9;
     border-width: 2px;
+
+    #sideBarSaturator{
+        z-index: 11;
+        height: calc(100% - 15px);
+        backdrop-filter: saturate(2.5);
+        position: fixed;
+        right: -1px;
+        top: 0;
+        width: 140px;
+        background-color: #fff2;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-style: solid;
+        border-color: #fff0;
+        border-width: 2px;
+        padding-inline: 10px;
+        padding-top: 10px;
+        transition: all 0.5s ease;
+    }
+
+    h1 {
+        color: white;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        margin-bottom: 9px;
+        z-index: 13;
+    }
 
     button {
         font-family: "Ubuntu Mono", monospace;
@@ -141,6 +237,7 @@ sidebar {
         border-color: #fff9;
         border-radius: 10px;
         border-width: 2px;
+        z-index: 13;
     }
 
     button:hover {
@@ -230,11 +327,7 @@ main {
         border-width: 2px;
     }
 
-    sidebar {
-        background: linear-gradient(to bottom, #222243, #432222);
-    }
-
-    .bigTitle{
+    .bigTitle {
         font-size: 50px;
     }
 }

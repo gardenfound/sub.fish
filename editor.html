@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="assets/styles/home.css">
     <link rel="stylesheet" href="assets/styles/editor.css">
     <script defer src="assets/scripts/base.js"></script>
+    <script defer src="assets/scripts/setupThemePicker.js"></script>
     <link rel="shortcut icon" href="assets/images/branding/logo_square.png" type="image/png">
 
-    <!-- Visitor Tracking (No Personal Data) -->
     <script data-goatcounter="https://gardenfound.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
     <!-- Metadata -->
@@ -47,12 +47,15 @@
     </header>
     <button class="sidebar" id="sideBarOpen" onclick="toggleSidebar(true)">☰</button>
     <sidebar id="sideBar">
+        <div id="sideBarSaturator"></div>
         <button onclick="toggleSidebar(false)">X</button>
         <br><br>
+        <h1>Pages</h1>
         <button onclick="window.location.href = 'home'">Home</button>
         <button onclick="window.location.href = 'presets'">Presets</button>
         <button onclick="window.location.href = 'editor'">Editor</button>
         <br>
+        <h1>Links</h1>
         <button onclick="window.location.href = 'https\:\/\/github.com/gardenfound/subtist'">GitHub</button>
         <button onclick="window.location.href = 'https\:\/\/discord.gg/m2VUJRxEWD'">Discord</button>
     </sidebar>
@@ -72,11 +75,13 @@
 
         <div id="modal" class="modal">
             <div id="modal-content" class="modal-content">
-                <input type="text" id="inputName">
-                <input type="text" id="inputDescription">
-                <textarea type="text" id="inputScript"></textarea>
+                <input type="text" id="inputName" placeholder="Title" autocomplete="off">
+                <input type="text" id="inputDescription" placeholder="Description" autocomplete="off">
+                <textarea type="text" id="inputScript" placeholder="Script..." autocomplete="off"></textarea>
+                <input type="text" id="inputAuthor" placeholder="Author" autocomplete="off">
                 <button id="copyButton"><b>Save Script</b></button>
                 <button id="deleteButton" class="deleteButton"><img src="assets/images/icons/delete.png"></button>
+                <button id="submitButton" class="submitButton deleteButton"><img src="assets/images/icons/submit.png"></button>
             </div>
         </div>
 

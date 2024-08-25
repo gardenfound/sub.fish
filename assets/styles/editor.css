@@ -55,6 +55,10 @@
     transition: opacity 0.25s ease;
 }
 
+.submitButton {
+    right: 65px;
+}
+
 input#inputName{
     margin-top: 50px;
 }

@@ -10,20 +10,36 @@ document.addEventListener('DOMContentLoaded', function () {
     const scriptLength = document.getElementById('presetLength');
     const sortBy = document.getElementById('sortBy');
     const favoriteButton = document.getElementById('favoriteButton');
-
+    const shareButton = document.getElementById('shareButton');
+    
     const settingsMenuHeight = '160px';
-
+    const customiseMenuHeight = '40px';
+    
     let favoritePresets = JSON.parse(localStorage.getItem('favoritePresets')) || [];
 
-    document.getElementById('settingsButton').addEventListener('click', function() {
+    document.getElementById('settingsButton').addEventListener('click', function () {
         var settingsMenu = document.getElementById('searchSettings');
         settingsMenu.style.height = (settingsMenu.style.height === settingsMenuHeight) ? '0px' : settingsMenuHeight;
         settingsMenu.style.opacity = (settingsMenu.style.height === settingsMenuHeight) ? '1' : '0';
     });
 
+    document.getElementById('customiseButton').addEventListener('click', function () {
+        var customiseMenu = document.getElementById('customiseSettings');
+        customiseMenu.style.height = (customiseMenu.style.height === customiseMenuHeight) ? '0px' : customiseMenuHeight;
+        customiseMenu.style.opacity = (customiseMenu.style.height === customiseMenuHeight) ? '1' : '0';
+    });
+
     fetch('assets/data/presets.json')
         .then(response => response.json())
         .then(data => {
+
+            // check if its a shared link, if so open it!
+            const hash = window.location.hash;
+            if (hash) {
+                openScriptByHash(hash);
+            }
+            shareButton.onclick = () => copyCurrentLink();
+
             function renderPresets(presets) {
                 scriptsGrid.innerHTML = '';
                 presets.forEach(preset => {
@@ -51,6 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
 
                     button.addEventListener('click', () => {
+                        const kebabCaseName = preset.name.toLowerCase().replace(/\s+/g, '-');
+                        history.pushState(null, '', `#${kebabCaseName}`);
+
                         document.getElementById('presetName').textContent = preset.name;
                         document.getElementById('presetWords').textContent = preset.words;
                         document.getElementById('copyButton').style.display = preset.words == "" ? "none" : "block";
@@ -73,6 +92,40 @@ document.addEventListener('DOMContentLoaded', function () {
             function getWordCount(text) {
                 return text.trim().split(',').length;
             }
+
+            document.getElementById('randomButton').addEventListener('click', function() {
+                const filteredPresets = data.presets.filter(preset => {
+                    const searchValue = searchBar.value.toLowerCase();
+                    const searchInTitle = preset.name.toLowerCase().includes(searchValue);
+                    const searchInWords = preset.words.toLowerCase().includes(searchValue);
+                    const searchScopeValue = searchScope.value;
+                    const matchSearch = searchScopeValue === 'title' ? searchInTitle : searchInWords;
+                    const matchEmptyFilter = showEmptyScripts.checked || preset.words !== "";
+                    const wordCount = getWordCount(preset.words);
+                    const matchLength = presetLength.value === 'all' ||
+                        (presetLength.value === 'short' && wordCount < 20) ||
+                        (presetLength.value === 'medium' && wordCount >= 20 && wordCount <= 40) ||
+                        (presetLength.value === 'long' && wordCount > 40);
+                    return matchSearch && matchEmptyFilter && matchLength;
+                });
+            
+                if (filteredPresets.length > 0) {
+                    const randomPreset = filteredPresets[Math.floor(Math.random() * filteredPresets.length)];
+            
+                    document.getElementById('presetName').textContent = randomPreset.name;
+                    document.getElementById('presetWords').textContent = randomPreset.words;
+                    document.getElementById('copyButton').style.display = randomPreset.words == "" ? "none" : "block";
+                    favoriteButton.classList.toggle('favorited', favoritePresets.includes(randomPreset.name));
+                    favoriteButton.onclick = () => toggleFavorite(randomPreset.name);
+            
+                    modal.style.display = "flex";
+                    setTimeout(() => {
+                        modal.classList.add('open');
+                        modalContent.classList.add('open');
+                    }, 5);
+                }
+            });
+            
 
             function filterAndSortScripts() {
                 const searchValue = searchBar.value.toLowerCase();
@@ -117,6 +170,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 filterAndSortScripts();
             }
 
+            function openScriptByHash(hash) {
+                const presetName = hash.slice(1).replace(/-/g, ' ');
+                const preset = data.presets.find(s => s.name.toLowerCase() === presetName);
+
+                if (preset) {
+                    document.getElementById('presetName').textContent = preset.name;
+                    document.getElementById('presetWords').textContent = preset.words;
+                    document.getElementById('copyButton').style.display = preset.words == "" ? "none" : "block";
+                    favoriteButton.classList.toggle('favorited', favoritePresets.includes(preset.name));
+                    favoriteButton.onclick = () => toggleFavorite(preset.name);
+            
+                    modal.style.display = "flex";
+                    setTimeout(() => {
+                        modal.classList.add('open');
+                        modalContent.classList.add('open');
+                    }, 5);
+                }
+            }
+
             searchBar.addEventListener('keyup', filterAndSortScripts);
             searchScope.addEventListener('change', filterAndSortScripts);
             showEmptyScripts.addEventListener('change', filterAndSortScripts);
@@ -128,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
     modal.addEventListener('click', (event) => {
+        history.pushState(null, '', ` `);
         if (event.target === modal) {
             setTimeout(() => {
                 modal.style.display = 'none';
@@ -136,6 +209,17 @@ document.addEventListener('DOMContentLoaded', function () {
             modalContent.classList.remove('open'); 
         }
     });
+
+    function copyCurrentLink() {
+        const currentUrl = window.location.href;
+        navigator.clipboard.writeText(currentUrl)
+            .then(() => {
+                showNotification('Link copied to clipboard', '#4caf50');
+            })
+            .catch(err => {
+                console.error('Failed to copy link: ', err);
+            });
+    }
 
     document.getElementById('copyButton').addEventListener('click', () => {
         const presetWords = document.getElementById('presetWords');
