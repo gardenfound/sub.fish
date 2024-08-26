@@ -41,7 +41,7 @@
 
 .deleteButton:hover img {
     opacity: 1;
-    transition: opacity 0.25s ease;
+    transition: opacity var(--transition-speed) ease;
 }
 
 .deleteIcon {
@@ -52,7 +52,7 @@
     height: 15px;
     width: 15px;
     opacity: 0;
-    transition: opacity 0.25s ease;
+    transition: opacity var(--transition-speed) ease;
 }
 
 .submitButton {
@@ -71,14 +71,14 @@ div.actions button {
     position: relative;
     margin: 10px;
     color: var(--text);
-    background-color: #fff2;
+    background-color: var(--button);
     backdrop-filter: saturate(2.5);
     border-style: solid;
-    border-color: #fff9;
+    border-color: var(--button-border);
     border-radius: 10px;
     border-width: 2px;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all var(--transition-speed);
     z-index: 1;
     width: 100px;
 
@@ -89,11 +89,11 @@ div.actions button {
 
 div.actions button:hover {
     scale: 1.03;
-    background-color: #fff3;
+    background-color: var(--button-hover);
     z-index: 1;
     opacity: 1;
     cursor: pointer;
-    transition: ease all 0.25s;
+    transition: ease all var(--transition-speed);
 }
 
 @media only screen and (max-width: 900px) {

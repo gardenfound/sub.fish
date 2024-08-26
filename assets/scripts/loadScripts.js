@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const settingsMenuHeight = '160px';
     const customiseMenuHeight = '40px';
+    const animText = getComputedStyle(document.body).getPropertyValue('--transition-speed');
+    const animSpeed = parseFloat(animText) * 1000;    
 
     let favoriteScripts = JSON.parse(localStorage.getItem('favoriteScripts')) || [];
 
@@ -217,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.target === modal) {
             setTimeout(() => {
                 modal.style.display = 'none';
-            }, 300);
+            }, animSpeed);
             modal.classList.remove('open');
             modalContent.classList.remove('open');
         }

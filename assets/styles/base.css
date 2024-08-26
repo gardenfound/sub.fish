@@ -1,12 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
-    /* Default */
-    --text: #f4f4f9;
-    --background: #1e1e1e;
-    --hover: #ffffff43;
-    --scale-hover: 1.03;
+    --text: #fff;
+    --secondary-text: #fff4;
+
+    --button: #fff2;
+    --button-hover: #fff3;
+    --button-border: #fff9;
+
     --background: linear-gradient(to top, #100000, #000010);
+    --dropdown-background: #101010;
+    --copy-button-hover: linear-gradient(to right, #ffafaf, #afafff, #ffafaf, #afafff, #ffafaf);
+    
+    --scale-hover: 1.03;
+    --saturation: 2.5;
+    --transition-speed: 0.3s;
 }
 
 :root.red {
@@ -47,6 +55,7 @@
 
 :root.monochrome {
     --background: #050505;
+    --copy-button-hover: linear-gradient(to right, #aaa, #fff, #aaa, #fff, #aaa);
 }
 
 :root.bimbo {
@@ -124,25 +133,26 @@ header {
 
 button.sidebar {
     position: fixed;
-    backdrop-filter: saturate(2.5);
+    backdrop-filter: saturate(var(--saturation));
     top: 12px;
     right: 10px;
     width: 140px;
     height: 40px;
     font-size: 20px;
     text-align: center;
-    transition: all 0.25s ease, right 0.5s ease;
+    /* transition: all 0.25s ease, right 0.5s ease; */
+    transition: all var(--transition-speed) ease;
     color: var(--text);
-    background-color: #fff2;
+    background-color: var(--button);
     border-style: solid;
-    border-color: #fff9;
+    border-color: var(--button-border);
     border-radius: 10px;
     border-width: 2px;
 }
 
 button.sidebar:hover {
-    background-color: #ffffff43;
-    scale: 1.03;
+    background-color: var(--button-hover);
+    scale: var(--scale-hover);
     cursor: pointer;
 }
 
@@ -162,7 +172,7 @@ button.sidebar.hide {
     color: white;
     padding: 10px 20px;
     opacity: 0;
-    transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition: bottom var(--transition-speed) ease-in-out, opacity var(--transition-speed) ease-in-out;
 }
 
 .clipboard-notification.show {
@@ -180,29 +190,29 @@ sidebar {
     right: -200px;
     top: 0;
     background: var(--background);
-    backdrop-filter: saturate(2.5);
+    backdrop-filter: saturate(var(--saturation));
     display: flex;
     flex-direction: column;
     width: 140px;
     padding-inline: 10px;
     padding-top: 10px;
     z-index: 10;
-    transition: all 0.5s ease;
+    transition: all var(--transition-speed) ease;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     border-style: solid;
-    border-color: #fff9;
+    border-color: var(--button-border);
     border-width: 2px;
 
     #sideBarSaturator{
         z-index: 11;
         height: calc(100% - 15px);
-        backdrop-filter: saturate(2.5);
+        backdrop-filter: saturate(var(--saturation));
         position: fixed;
-        right: -1px;
+        right: -3px;
         top: 0;
         width: 140px;
-        background-color: #fff2;
+        background-color: var(--button);
         border-top-left-radius: 20px;
         border-bottom-left-radius: 20px;
         border-style: solid;
@@ -210,7 +220,7 @@ sidebar {
         border-width: 2px;
         padding-inline: 10px;
         padding-top: 10px;
-        transition: all 0.5s ease;
+        transition: all var(--transition-speed) ease;
     }
 
     h1 {
@@ -230,19 +240,19 @@ sidebar {
         text-align: center;
         height: 40px;
         margin-bottom: 10px;
-        transition: all 0.25s ease;
+        transition: all var(--transition-speed) ease;
         color: var(--text);
-        background-color: #fff2;
+        background-color: var(--button);
         border-style: solid;
-        border-color: #fff9;
+        border-color: var(--button-border);
         border-radius: 10px;
         border-width: 2px;
         z-index: 13;
     }
 
     button:hover {
-        background-color: #ffffff43;
-        scale: 1.03;
+        background-color: var(--button-hover);
+        scale: var(--scale-hover);
         cursor: pointer;
     }
 }
@@ -269,19 +279,19 @@ main {
     text-align: center;
     height: 40px;
     margin-bottom: 10px;
-    transition: all 0.25s ease;
+    transition: all var(--transition-speed) ease;
     color: var(--text);
-    background-color: #fff2;
-    backdrop-filter: saturate(2.5);
+    background-color: var(--button);
+    backdrop-filter: saturate(var(--saturation));
     border-style: solid;
-    border-color: #fff9;
+    border-color: var(--button-border);
     border-radius: 10px;
     border-width: 2px;
 }
 
 .fancyButton:hover {
     background-color: #ffffff43;
-    scale: 1.03;
+    scale: var(--scale-hover);
     cursor: pointer;
 }
 
@@ -311,18 +321,18 @@ main {
 
     button.sidebar {
         position: fixed;
-        backdrop-filter: saturate(2.5);
+        backdrop-filter: saturate(var(--saturation));
         top: 12px;
         right: 10px;
         width: 40px;
         height: 40px;
         font-size: 20px;
         text-align: center;
-        transition: all 0.25s ease, right 0.5s ease;
+        transition: all var(--transition-speed) ease, right var(--transition-speed) ease;
         color: var(--text);
-        background-color: #fff2;
+        background-color: var(--button);
         border-style: solid;
-        border-color: #fff9;
+        border-color: var(--button-border);
         border-radius: 10px;
         border-width: 2px;
     }

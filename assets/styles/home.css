@@ -6,20 +6,20 @@
     padding: 10px;
     font-family: "Ubuntu Mono", monospace;
     z-index: 1;
-    backdrop-filter: saturate(2.5);
+    backdrop-filter: saturate(var(--saturation));
 
     color: var(--text);
-    background-color: #fff2;
+    background-color: var(--button);
     border-style: solid;
-    border-color: #fff9;
+    border-color: var(--button-border);
     border-radius: 10px;
     border-width: 2px;
-    transition: all ease 0.25s;
+    transition: all ease var(--transition-speed);
 }
 
 #searchBar:focus {
     outline: none;
-    background-color: #fff3;
+    background-color: var(--button-hover);
 }
 
 .modal {
@@ -35,13 +35,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all ease 0.3s;
+    transition: all ease var(--transition-speed);
 }
 
 .modal.open{
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(3px);
-    transition: all ease 0.3s;
+    transition: all ease var(--transition-speed);
 }
 
 .modal-content {
@@ -52,18 +52,18 @@
     padding: 20px;
     max-width: 80%;
     color: var(--text);
-    background-color: #fff2;
+    background-color: var(--button);
     border-style: solid;
-    border-color: #fff9;
+    border-color: var(--button-border);
     border-width: 2px;
-    transition: all ease 0.3s;
+    transition: all ease var(--transition-speed);
 
     opacity: 0;
 }
 
 .modal-content.open{
     opacity: 1;
-    transition: all ease 0.3s;
+    transition: all ease var(--transition-speed);
 }
 
 .grid {
@@ -82,14 +82,14 @@
         position: relative;
         margin: 10px;
         color: var(--text);
-        background-color: #fff2;
-        backdrop-filter: saturate(2.5);
+        background-color: var(--button);
+        backdrop-filter: saturate(var(--saturation));
         border-style: solid;
-        border-color: #fff9;
+        border-color: var(--button-border);
         border-radius: 10px;
         border-width: 2px;
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all var(--transition-speed);
         z-index: 1;
         width: 280px;
 
@@ -104,11 +104,11 @@
 
     button:hover {
         scale: var(--scale-hover);
-        background-color: #fff3;
+        background-color: var(--button-hover); ;;;
         z-index: 1;
         opacity: 1;
         cursor: pointer;
-        transition: ease all 0.25s;
+        transition: ease all var(--transition-speed);
     }
 }
 
@@ -119,15 +119,15 @@ label {
     flex-direction: row;
 
     select {
-        background-color: #fff2;
+        background-color: var(--button);
         border-style: solid;
-        border-color: #fff9;
+        border-color: var(--button-border);
         border-radius: 10px;
         border-width: 2px;
         color: var(--text);
 
         option {
-            background-color: #101010;
+            background-color: var(--dropdown-background);
         }
     }
 }
@@ -141,11 +141,11 @@ label {
     margin-top: 10px;
     display: block;
     width: 100%;
-    transition: all 0.25s ease;
+    transition: all var(--transition-speed) ease;
     color: var(--text);
-    background-color: #fff2;
+    background-color: var(--button);
     border-style: solid;
-    border-color: #fff9;
+    border-color: var(--button-border);
     border-width: 2px;
     overflow: hidden;
     position: relative;
@@ -158,9 +158,9 @@ label {
     left: 0;
     height: 100%;
     width: 500%;
-    background: linear-gradient(to right, #ffafaf, #afafff, #ffafaf, #afafff, #ffafaf);
+    background: var(--copy-button-hover);
     z-index: -1;
-    transition: opacity 0.25s ease;
+    transition: opacity var(--transition-speed) ease;
     opacity: 0;
     animation: scrollGradient 3s linear infinite;
 }
@@ -182,14 +182,14 @@ label {
     margin: 10px;
     margin-right: 0px;
     color: var(--text);
-    background-color: #fff2;
-    backdrop-filter: saturate(2.5);
+    background-color: var(--button);
+    backdrop-filter: saturate(var(--saturation));
     border-style: solid;
-    border-color: #fff9;
+    border-color: var(--button-border);
     border-radius: 10px;
     border-width: 2px;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all var(--transition-speed);
     z-index: 1;
     width: 55px;
 
@@ -200,11 +200,11 @@ label {
 
 .settings-button:hover {
     scale: var(--scale-hover);
-    background-color: #fff3;
+    background-color: var(--button-hover);
     z-index: 1;
     opacity: 1;
     cursor: pointer;
-    transition: ease all 0.25s;
+    transition: ease all var(--transition-speed);
 }
 
 .settings-button img {
@@ -222,15 +222,16 @@ main #searchSettings {
     display: flex;
     flex-direction: column;
     overflow-y: hidden;
+    font: "Ubunto Mono", monospace;
 
-    backdrop-filter: saturate(2.5);
+    backdrop-filter: saturate(var(--saturation));
     color: var(--text);
-    background-color: #fff2;
+    background-color: var(--button);
     border-style: solid;
-    border-color: #fff9;
+    border-color: var(--button-border);
     border-radius: 10px;
     border-width: 2px;
-    transition: all ease 0.25s;
+    transition: all ease var(--transition-speed);
 }
 
 main #customiseSettings{
@@ -242,14 +243,14 @@ main #customiseSettings{
     flex-direction: column;
     overflow-y: hidden;
 
-    backdrop-filter: saturate(2.5);
+    backdrop-filter: saturate(var(--saturation));
     color: var(--text);
-    background-color: #fff2;
+    background-color: var(--button);
     border-style: solid;
-    border-color: #fff9;
+    border-color: var(--button-border);
     border-radius: 10px;
     border-width: 2px;
-    transition: all ease 0.25s;
+    transition: all ease var(--transition-speed);
 }
 
 .favorite-button {
@@ -266,7 +267,7 @@ main #customiseSettings{
     img {
         -webkit-user-drag: none;
         opacity: 0.4;
-        transition: opacity 0.25s ease, filter 0.25s ease;
+        transition: opacity var(--transition-speed) ease, filter var(--transition-speed) ease;
         filter: brightness(0) invert(1);
         height: 100%;
         width: 100%;
@@ -290,7 +291,7 @@ main #customiseSettings{
     height: 15px;
     width: 15px;
     opacity: 0;
-    transition: opacity 0.25s ease, filter 0.25s ease;
+    transition: opacity var(--transition-speed) ease, filter var(--transition-speed) ease;
 }
 
 .favorite-icon.favorited {
@@ -335,7 +336,7 @@ main #customiseSettings{
 }
 
 #presetAmount, #scriptAmount {
-    color: var(--hover);
+    color: var(--secondary-text);
 }
 
 .gridButtonTitle {
@@ -388,9 +389,9 @@ main #customiseSettings{
             flex-direction: row;
 
             select {
-                background-color: #fff2;
+                background-color: var(--button);
                 border-style: solid;
-                border-color: #fff9;
+                border-color: var(--button-border);
                 border-radius: 10px;
                 font-size: 12px;
                 border-width: 2px;
@@ -412,9 +413,9 @@ main #customiseSettings{
         max-height: 60%;
 
         color: var(--text);
-        background-color: #fff2;
+        background-color: var(--button);
         border-style: solid;
-        border-color: #fff9;
+        border-color: var(--button-border);
         border-width: 2px;
     }
 
