@@ -202,8 +202,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
     modal.addEventListener('click', (event) => {
-        history.pushState(null, '', ` `);
         if (event.target === modal) {
+            history.pushState(null, '', ` `);
             setTimeout(() => {
                 modal.style.display = 'none';
             }, animSpeed);
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const currentUrl = window.location.href;
         navigator.clipboard.writeText(currentUrl)
             .then(() => {
-                showNotification('Link copied to clipboard', '#4caf50');
+                showNotification('Link copied to clipboard');
             })
             .catch(err => {
                 console.error('Failed to copy link: ', err);
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.getSelection().removeAllRanges();
         window.getSelection().addRange(range);
         document.execCommand('copy');
-        showNotification('Copied to clipboard', '#4caf50');
+        showNotification('Copied to clipboard');
         window.getSelection().removeAllRanges();
     });
 });

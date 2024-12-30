@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const settingsMenuHeight = '160px';
     const customiseMenuHeight = '40px';
     const animText = getComputedStyle(document.body).getPropertyValue('--transition-speed');
-    const animSpeed = parseFloat(animText) * 1000;    
+    const animSpeed = parseFloat(animText) * 1000;
 
     let favoriteScripts = JSON.parse(localStorage.getItem('favoriteScripts')) || [];
 
@@ -74,15 +74,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     button.addEventListener('click', () => {
 
-                        const kebabCaseName = script.name.toLowerCase().replace(/\s+/g, '-');
-                        history.pushState(null, '', `#${kebabCaseName}`);
+                        const kebabName = script.name.toLowerCase().replace(/\s+/g, '-');
+                        const author = script.author || "Unknown";
+
+                        const readingSpeed = 100;
+                        const wordCount = script.script.split(/\s+/).length;
+                        const totalSeconds = Math.ceil((wordCount / readingSpeed) * 60);
+                        const minutes = Math.floor(totalSeconds / 60);
+                        const seconds = totalSeconds % 60;
+                        const estimatedReadingTime = minutes > 0
+                            ? `${minutes}m ${seconds}s`
+                            : `${seconds}s`;
+
+                        history.pushState(null, '', `#${kebabName}`);
 
                         document.getElementById('scriptName').textContent = script.name;
+                        document.getElementById('scriptAuthor').innerHTML = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='currentColor' style='vertical-align:middle; margin-right:4px;'><path d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/></svg>${author}`;
+                        document.getElementById('scriptEstimatedReadingTime').innerHTML = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='currentColor' style='vertical-align:middle; margin-right:4px;'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.5-13h-1v6l5.25 3.15.75-1.23-4.5-2.67z'/></svg>${estimatedReadingTime}`;
                         document.getElementById('scriptDescription').textContent = script.description;
                         document.getElementById('scriptCode').textContent = script.script;
-                        document.getElementById('copyButton').style.display = script.script == "" ? "none" : "block";
+                        document.getElementById('copyButton').style.display = script.script === "" ? "none" : "block";
                         favoriteButton.classList.toggle('favorited', favoriteScripts.includes(script.name));
                         favoriteButton.onclick = () => toggleFavorite(script.name);
+
+
 
                         modal.style.display = "flex";
                         setTimeout(() => {
@@ -215,8 +230,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
     modal.addEventListener('click', (event) => {
-        history.pushState(null, '', ` `);
         if (event.target === modal) {
+            history.pushState(null, '', ` `);
             setTimeout(() => {
                 modal.style.display = 'none';
             }, animSpeed);
@@ -229,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const currentUrl = window.location.href;
         navigator.clipboard.writeText(currentUrl)
             .then(() => {
-                showNotification('Link copied to clipboard', '#4caf50');
+                showNotification('Link copied to clipboard');
             })
             .catch(err => {
                 console.error('Failed to copy link: ', err);
@@ -244,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.getSelection().removeAllRanges();
         window.getSelection().addRange(range);
         document.execCommand('copy');
-        showNotification('Copied to clipboard', '#4caf50');
+        showNotification('Copied to clipboard');
         window.getSelection().removeAllRanges();
     });
 });

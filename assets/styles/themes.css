@@ -1,0 +1,227 @@
+:root {
+    --text: #fff;
+    --secondary-text: #fff7;
+
+    --button: #fff2;
+    --button-hover: #fff3;
+    --button-border: #fff9;
+
+    --background: linear-gradient(to top, #100000, #000010);
+    --dropdown-background: #101010;
+    --copy-button-hover: linear-gradient(to right, #ffafaf, #afafff, #ffafaf, #afafff, #ffafaf);
+    --shadow: 0px 2px 10px 1px #000a;
+    --image-filter: brightness(0) invert(1);
+
+    --header-swift: #ff6161;
+    --header-silent: #8153ff;
+    
+    --scale-hover: 1.03;
+    --scale-active: 0.97;
+    --saturation: 2.5;
+    --transition-speed: 0.3s;
+}
+
+:root.red {
+    --background: linear-gradient(0deg, hsl(0, 100%, 4%), hsl(0, 63%, 10%));
+    --header-swift: hsl(0, 100%, 69%);
+    --header-silent: hsl(0, 100%, 37%);
+}
+
+:root.orange {
+    --background: linear-gradient(0deg, hsl(24, 100%, 4%), hsl(24, 63%, 10%));
+    --header-swift: hsl(24, 100%, 69%);
+    --header-silent: hsl(24, 100%, 37%);
+}
+
+:root.yellow {
+    --background: linear-gradient(0deg, hsl(51, 100%, 4%), hsl(51, 63%, 10%));
+    --header-swift: hsl(51, 100%, 69%);
+    --header-silent: hsl(51, 100%, 37%);
+}
+
+:root.green {
+    --background: linear-gradient(0deg, hsl(96, 100%, 4%), hsl(96, 63%, 10%));
+    --header-swift: hsl(96, 100%, 69%);
+    --header-silent: hsl(96, 100%, 37%);
+}
+
+:root.cyan {
+    --background: linear-gradient(0deg, hsl(180, 100%, 4%), hsl(180, 63%, 10%));
+    --header-swift: hsl(180, 100%, 69%);
+    --header-silent: hsl(180, 100%, 37%);
+}
+
+:root.blue {
+    --background: linear-gradient(0deg, hsl(225, 100%, 4%), hsl(225, 63%, 10%));
+    --header-swift: hsl(225, 100%, 69%);
+    --header-silent: hsl(225, 100%, 56%);
+}
+
+:root.purple {
+    --background: linear-gradient(0deg, hsl(267, 100%, 4%), hsl(267, 63%, 10%));
+    --header-swift: hsl(267, 100%, 69%);
+    --header-silent: hsl(274, 100%, 60%);
+}
+
+:root.pink {
+    --background: linear-gradient(0deg, hsl(303, 100%, 4%), hsl(303, 63%, 10%));
+    --header-swift: hsl(303, 100%, 69%);
+    --header-silent: hsl(303, 100%, 37%);
+}
+
+:root.monochrome {
+    --background: #050505;
+    --copy-button-hover: linear-gradient(to right, #aaa, #fff, #aaa, #fff, #aaa);
+
+    --header-swift: #d4d4d4;
+    --header-silent: #828282;
+}
+
+:root.light {
+    --text: #111;
+    --secondary-text: #0007;
+
+    --button: #eee;
+    --button-hover: #ccc;
+    --button-border: #0009;
+
+    --background: linear-gradient(to top, #ffecec, #ede7ff);
+    --dropdown-background: #eee;
+    --image-filter: brightness(0) invert(0);
+}
+
+:root.bimbo {
+    --text: #000;
+    --secondary-text: #0007;
+
+    --button: #ff78e2;
+    --button-hover: #0003;
+    --button-border: #0009;
+    --background: #ff88f9;
+    --dropdown-background: #ff88f9;
+    --copy-button-hover: linear-gradient(to right, #ff81ec, #f318ff, #ff81ec, #f318ff, #ff81ec);
+    --image-filter: brightness(0) invert(0);
+
+    --header-swift: #000000;
+    --header-silent: #000000;
+}
+
+:root.summer-haze {
+    --background: linear-gradient(to top, #240023, #301b00);
+    --copy-button-hover: linear-gradient(to right, #ff51f9, #ffad41, #ff51f9, #ffad41, #ff51f9);
+
+    --header-swift: #ff51f9;
+    --header-silent: #ffad41;
+}
+
+:root.solar {
+    --text: #ffe7c7;
+    --secondary-text: #ffe7c788;
+
+    --button: rgba(80, 40, 10, 0.7);
+    --button-hover: rgba(120, 50, 20, 0.85);
+    --button-border: #ffb347;
+
+    --background: radial-gradient(circle at 50% 60%, #331500, #110700);
+    --dropdown-background: rgba(40, 20, 10, 0.9);
+    --copy-button-hover: linear-gradient(to right, #ff8855, #ffcc99, #ff8855, #ffcc99, #ff8855);
+    --image-filter: brightness(0) saturate(100%) invert(97%) sepia(58%) saturate(629%) hue-rotate(305deg) brightness(101%) contrast(101%);
+
+    --header-swift: #ff8855;
+    --header-silent: #ffcc99;
+
+    --saturation: 2.0;
+}
+
+:root.seductive {
+    --text: #ff66cc;
+    --secondary-text: #ff66cc88;
+
+    --button: rgba(20, 20, 20, 0.8);
+    --button-hover: rgba(40, 10, 60, 0.85);
+    --button-border: #cc66ff;
+
+    --background: radial-gradient(circle at 50% 60%, #150037, #000010);
+    --dropdown-background: rgba(15, 15, 25, 0.9);
+    --copy-button-hover: linear-gradient(to right, #cc66ff, #ff88d7, #cc66ff, #ff88d7, #cc66ff);
+    --image-filter: brightness(0) saturate(100%) invert(50%) sepia(96%) saturate(529%) hue-rotate(285deg) brightness(101%) contrast(101%);
+
+    --header-swift: #cc66ff;
+    --header-silent: #ff88d7;
+
+    --saturation: 2.2;
+}
+
+:root.abyssal {
+    --text: #aaf3ff;
+    --secondary-text: #aaf3ff88;
+
+    --button: rgba(10, 30, 40, 0.7);
+    --button-hover: rgba(20, 50, 60, 0.8);
+    --button-border: #66e5e5;
+
+    --background: radial-gradient(circle at 50% 60%, #00181c, #000c0e);
+    --dropdown-background: rgba(10, 20, 25, 0.95);
+    --copy-button-hover: linear-gradient(to right, #66b2e5, #aaf3ff, #66b2e5, #aaf3ff, #66b2e5);
+    --image-filter: brightness(0) saturate(100%) invert(79%) sepia(51%) saturate(247%) hue-rotate(171deg) brightness(101%) contrast(101%);
+
+    --header-swift: #61ffff;
+    --header-silent: #53a3ff;
+
+    --saturation: 1.8;
+}
+
+:root.forest {
+    --text: #d4ffb3;
+    --secondary-text: #d4ffb388;
+
+    --button: rgba(40, 60, 20, 0.7);
+    --button-hover: rgba(60, 80, 30, 0.85);
+    --button-border: #80a840;
+
+    --background: radial-gradient(circle at 50% 60%, #2a4010, #161a04);
+    --dropdown-background: rgba(30, 40, 20, 0.9);
+    --copy-button-hover: linear-gradient(to right, #b37744, #d4a855, #b37744, #d4a855, #b37744);
+    --image-filter: brightness(0) saturate(100%) invert(88%) sepia(8%) saturate(1315%) hue-rotate(49deg) brightness(107%) contrast(100%);
+
+    --header-swift: #a0c860;
+    --header-silent: #806030;
+
+    --saturation: 1.8;
+}
+
+:root.sexstories {
+    --text: #fff;
+    --secondary-text: #ff0;
+
+    --button: #006;
+    --button-hover: #006;
+    --button-border: #06f;
+
+    --background: #000090;
+    --dropdown-background: #006;
+    --copy-button-hover: linear-gradient(to right, #3787ff, #83b9ff, #3787ff, #83b9ff, #3787ff);
+    --shadow: none;
+    --image-filter: brightness(0) invert(1);    
+
+    --header-swift: #fff;
+    --header-silent: #fff;
+}
+
+:root.pornhub {
+    --text: #fff;
+    --secondary-text: #fff7;
+
+    --button: #000;
+    --button-hover: #121212;
+    --button-border: #ff9000;
+
+    --background: #000;
+    --dropdown-background: #000;
+    --copy-button-hover: #ff9000;
+    --shadow: none;
+    --image-filter: brightness(0) invert(1);    
+
+    --header-swift: #ff9000;
+    --header-silent: #ff9000;
+}

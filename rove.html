@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>subtist | Rove</title>
+
+    <link rel="stylesheet" href="rove_assets/styles/themes.css">
+    <link rel="stylesheet" href="rove_assets/styles/posts.css">
+    <link rel="stylesheet" href="rove_assets/styles/menus.css">
+    <link rel="stylesheet" href="rove_assets/styles/intro.css">
+
+    <script src="rove_assets/scripts/utils/packages/axios.js"></script>
+    <script defer type="module" src="rove_assets/scripts/App.js"></script>
+    <link rel="shortcut icon" href="rove_assets/images/logo_circle.png" type="image/png">
+
+</head>
+
+<body>
+    <div class="app-container">
+
+        <div id="intro-cutscene" class="intro-cutscene">
+            <div class="intro-content">
+                <img src="rove_assets/images/logo_circle.png" alt="Logo" class="intro-logo">
+                <h1 class="intro-title">Rove</h1>
+            </div>
+        </div>
+
+        <div id="background-container">
+            <div id="background" class="background"></div>
+        </div>
+
+        <div class="no-posts-popup">
+            <div class="popup-content">
+                <svg viewBox="0 0 24 24" class="no-posts-icon">
+                    <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                </svg>
+                <div class="popup-message">No posts found</div>
+                <div class="popup-actions">
+                    <button class="popup-button" id="switchToCatsBtn">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+                        </svg>
+                        Switch to Cats :3
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="global-actions">
+            <div class="action-button" id="action-button-autoscroll">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2l4-4h-3V7h-2v6H8l4 4z" />
+                </svg>
+            </div>
+            <div class="action-button" id="action-button-settings">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12-.21.37-.29.59-.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+                </svg>
+            </div>
+        </div>
+
+        <div class="bottom-sheet" id="settings-menu">
+            <h1>Settings</h1>
+            <div class="setting-item">
+                <div class="setting-header">
+                    <span>Autoscroll Delay (seconds)</span>
+                    <span class="setting-toggle">+</span>
+                </div>
+                <div class="setting-content">
+                    <input type="number" class="setting-input" id="autoscroll-delay" value="3" min="1" max="60" step="1">
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-header">
+                    <span>Batch Size</span>
+                    <span class="setting-toggle">+</span>
+                </div>
+                <div class="setting-content">
+                    <input type="number" class="setting-input" id="batch-size" value="5" min="2" max="10" step="1">
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-header">
+                    <span>Post Information</span>
+                    <span class="setting-toggle">+</span>
+                </div>
+                <div class="setting-content">
+                    <div class="setting-options" id="showPostInfo-options">
+                        <div class="setting-option active" data-value="true">Show</div>
+                        <div class="setting-option" data-value="false">Hide</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-header">
+                    <span>Theme</span>
+                    <span class="setting-toggle">+</span>
+                </div>
+                <div class="setting-content">
+                    <div class="setting-options" id="theme-options">
+                        <div class="setting-option active" data-value="dark">Dark</div>
+                        <div class="setting-option" data-value="light">Light</div>
+                        <div class="setting-option" data-value="ph">PH</div>
+                        <div class="setting-option" data-value="green">Green</div>
+                        <div class="setting-option" data-value="solar">Solar</div>
+                        <div class="setting-option" data-value="seductive">Seductive</div>
+                        <div class="setting-option" data-value="abyssal">Abyssal</div>
+                        <div class="setting-option" data-value="forest">Forest</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-header">
+                    <span>Source</span>
+                    <span class="setting-toggle">+</span>
+                </div>
+                <div class="setting-content">
+                    <div class="setting-options" id="currentSource-options">
+                        <div class="setting-option active" data-value="cat">Cat</div>
+                        <div class="setting-option" data-value="dog">Dog</div>
+                        <div class="setting-option" data-value="waifu">Waifu</div>
+                        <div class="setting-option" data-value="nekos">Nekos</div>
+                        <div class="setting-option" data-value="rule34">Rule34</div>
+                    </div>
+
+                    <div class="setting-group">
+                        <p style="font-weight: bold;">Current Source Settings (<span id="current-source"></span>)</p>
+                        <div id="source-settings">
+                            <div id="source-settings-booru">
+                                <p>Tags</p>
+                                <input type="text" class="setting-input" id="booru-tags" placeholder="Tags (space seperated)">
+                                <p>Blacklisted Tags</p>
+                                <input type="text" class="setting-input" id="booru-blacklist" placeholder="Blacklisted Tags (space seperated)">
+                            </div>
+                            <div id="source-settings-waifu">
+                                <p>Media Type</p>
+                                <div class="source-options" id="waifu-media-type">
+                                    <div class="source-option active" data-value="false">Images</div>
+                                    <div class="source-option" data-value="true">GIFs</div>
+                                </div>
+                                <p>Content Type</p>
+                                <div class="source-options" id="waifu-content-type">
+                                    <div class="source-option active" data-value="false">SFW</div>
+                                    <div class="source-option" data-value="true">NSFW</div>
+                                </div>
+                            </div>
+                            <div id="source-settings-none">
+                                <p>Nobody Here but Us Chickens!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-header">
+                    <span>Background Image</span>
+                    <span class="setting-toggle">+</span>
+                </div>
+                <div class="setting-content">
+                    <div class="setting-options" id="showBackground-options">
+                        <div class="setting-option active" data-value="true">Show</div>
+                        <div class="setting-option" data-value="false">Hide</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-sheet" id="help-menu">
+            <h1>Help</h1>
+            <p>This project is made because there is not an overly horny TikTok like website with hentai!</p>
+        </div>
+
+        <div id="post-container">
+            <!-- js wizard stuff -->
+        </div>
+
+        <div class="loading" id="loading">Loading...</div>
+    </div>
+</body>
+
+</html>

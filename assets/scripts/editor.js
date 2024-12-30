@@ -133,12 +133,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function submitScript(webhookUrl, title, description, script, author) {
             if(title == "Welcome to the editor!"){
-                showNotification('Can\'t upload this one!', '#ff3333')
+                showNotification('Can\'t upload this one!')
                 return;
             }
 
             if(webhookUrl.length < 2 || title.length < 2 || description.length < 2 || script.length < 2 || author.length < 2){
-                showNotification('Field Empty, Can\'t Submit!', '#ff3333')
+                showNotification('Field Empty, Can\'t Submit!')
                 return;
             }
 
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 attachments: []
             }));
 
-            showNotification('Script Submitted! (Discord)', '#4caf50');
+            showNotification('Script Submitted! (Discord)');
     }
 
     displayScripts();
@@ -187,10 +187,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         data = loadedData;
                         displayScripts();
                     } else {
-                        showNotification('JSON not valid', '#ff3333');
+                        showNotification('JSON not valid');
                     }
                 } catch (error) {
-                    showNotification('Can\'t process file', '#ff3333');
+                    showNotification('Can\'t process file');
                     console.error(error);
                 } finally {
                     event.target.value = '';

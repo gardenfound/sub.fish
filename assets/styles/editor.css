@@ -7,15 +7,17 @@
   color: var(--white);
   max-height: 500px;
 
-  border-color: #fff9;
+  border-color: var(--button-border);
   border-radius: 10px;
   border-width: 2px;
   border-style: solid;
+  box-shadow: var(--shadow);
 }
 
 .modal textarea {
   resize: vertical;
   min-height: 100px;
+  box-shadow: var(--shadow);
 }
 
 .deleteButton {
@@ -81,6 +83,7 @@ div.actions button {
     transition: all var(--transition-speed);
     z-index: 1;
     width: 100px;
+    box-shadow: var(--shadow);
 
     span {
         margin-bottom: 20px;
@@ -94,6 +97,10 @@ div.actions button:hover {
     opacity: 1;
     cursor: pointer;
     transition: ease all var(--transition-speed);
+}
+
+div.actions button:hover:active{
+    scale: var(--scale-active);
 }
 
 @media only screen and (max-width: 900px) {

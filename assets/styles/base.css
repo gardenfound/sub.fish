@@ -1,79 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-:root {
-    --text: #fff;
-    --secondary-text: #fff4;
-
-    --button: #fff2;
-    --button-hover: #fff3;
-    --button-border: #fff9;
-
-    --background: linear-gradient(to top, #100000, #000010);
-    --dropdown-background: #101010;
-    --copy-button-hover: linear-gradient(to right, #ffafaf, #afafff, #ffafaf, #afafff, #ffafaf);
-    
-    --scale-hover: 1.03;
-    --saturation: 2.5;
-    --transition-speed: 0.3s;
-}
-
-:root.red {
-    --background: linear-gradient(0deg, hsl(0, 100%, 4%), hsl(0, 63%, 10%));
-}
-
-:root.orange {
-    --background: linear-gradient(0deg, hsl(24, 100%, 4%), hsl(24, 63%, 10%));
-}
-
-:root.yellow {
-    --background: linear-gradient(0deg, hsl(51, 100%, 4%), hsl(51, 63%, 10%));
-}
-
-:root.green {
-    --background: linear-gradient(0deg, hsl(96, 100%, 4%), hsl(96, 63%, 10%));
-}
-
-:root.cyan {
-    --background: linear-gradient(0deg, hsl(180, 100%, 4%), hsl(180, 63%, 10%));
-}
-
-:root.blue {
-    --background: linear-gradient(0deg, hsl(225, 100%, 4%), hsl(225, 63%, 10%));
-}
-
-:root.purple {
-    --background: linear-gradient(0deg, hsl(267, 100%, 4%), hsl(267, 63%, 10%));
-}
-
-:root.pink {
-    --background: linear-gradient(0deg, hsl(303, 100%, 4%), hsl(303, 63%, 10%));
-}
-
-:root.rainbow {
-    --background: linear-gradient(0deg, hsl(0, 63%, 10%), hsl(24, 63%, 10%), hsl(51, 63%, 10%), hsl(96, 63%, 10%), hsl(180, 63%, 10%), hsl(225, 63%, 10%), hsl(267, 63%, 10%), hsl(303, 63%, 10%));
-}
-
-:root.monochrome {
-    --background: #050505;
-    --copy-button-hover: linear-gradient(to right, #aaa, #fff, #aaa, #fff, #aaa);
-}
-
-:root.bimbo {
-    --background: #800079;
-}
-
-:root.summer-haze {
-    --background: linear-gradient(to top, #240023, #301b00);
-}
-
-:root.matrix {
-    --background: linear-gradient(to top, #000500, #001600);
-}
-
-:root.hub {
-    --background: linear-gradient(to top, #683200, #000000);
-}
-
 body {
     margin: 0;
     padding: 0;
@@ -100,6 +26,11 @@ background {
     font-size: 80px;
 }
 
+::placeholder {
+    color: var(--secondary-text);
+    opacity: 1;
+  }
+
 header {
     height: max-content;
     margin: 40px;
@@ -111,7 +42,7 @@ header {
 
         h1 {
             font-size: 2.5rem;
-            color: #f4f4f9;
+            color: var(--text);
             text-align: left;
             margin: 0;
         }
@@ -119,28 +50,39 @@ header {
         img {
             max-height: 35px;
             padding-right: 10px;
+            filter: var(--image-filter);
         }
     }
 
     h2 {
         font-size: 1.2rem;
-        color: #f4f4f9;
+        color: var(--text);
         text-align: left;
         margin: 0;
         padding-top: 5px;
     }
 }
 
+#header-swift{
+    color: var(--header-swift);
+    transition: all var(--transition-speed) ease;
+}
+
+#header-silent{
+    color: var(--header-silent);
+    transition: all var(--transition-speed) ease;
+}
+
 button.sidebar {
     position: fixed;
     backdrop-filter: saturate(var(--saturation));
+    box-shadow: var(--shadow);
     top: 12px;
     right: 10px;
     width: 140px;
     height: 40px;
     font-size: 20px;
     text-align: center;
-    /* transition: all 0.25s ease, right 0.5s ease; */
     transition: all var(--transition-speed) ease;
     color: var(--text);
     background-color: var(--button);
@@ -156,6 +98,10 @@ button.sidebar:hover {
     cursor: pointer;
 }
 
+button.sidebar:hover:active{
+    scale: var(--scale-active);
+}
+
 button.sidebar.hide {
     right: -200px;
 }
@@ -167,9 +113,11 @@ button.sidebar.hide {
     bottom: -0px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #4caf50;
-    border-style: none;
-    color: white;
+    background-color: var(--button);
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--button-border);
+    color: var(--text);
     padding: 10px 20px;
     opacity: 0;
     transition: bottom var(--transition-speed) ease-in-out, opacity var(--transition-speed) ease-in-out;
@@ -186,6 +134,8 @@ button.sidebar.hide {
 
 sidebar {
     height: calc(100% - 15px);
+    -webkit-transform: translateX(-0px);
+    transform: translateX(0px);
     position: fixed;
     right: -200px;
     top: 0;
@@ -196,7 +146,7 @@ sidebar {
     width: 140px;
     padding-inline: 10px;
     padding-top: 10px;
-    z-index: 10;
+    z-index: 15;
     transition: all var(--transition-speed) ease;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -209,7 +159,7 @@ sidebar {
         height: calc(100% - 15px);
         backdrop-filter: saturate(var(--saturation));
         position: fixed;
-        right: -3px;
+        right: -4px;
         top: 0;
         width: 140px;
         background-color: var(--button);
@@ -224,7 +174,7 @@ sidebar {
     }
 
     h1 {
-        color: white;
+        color: var(--text);
         width: 100%;
         text-align: center;
         margin: 0;
@@ -241,6 +191,7 @@ sidebar {
         height: 40px;
         margin-bottom: 10px;
         transition: all var(--transition-speed) ease;
+        box-shadow: var(--shadow);
         color: var(--text);
         background-color: var(--button);
         border-style: solid;
@@ -255,27 +206,34 @@ sidebar {
         scale: var(--scale-hover);
         cursor: pointer;
     }
+
+    button:hover:active{
+        scale: var(--scale-active);
+    }
 }
 
 sidebar.show {
-    right: 0;
+    -webkit-transform: translateX(-200px);
+    transform: translateX(-200px);
 }
 
 main {
     align-self: center;
-    width: 70%;
+    width: 1300px;
+    max-width: 95%;
     height: max-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
+    color: var(--text);
 }
 
 .fancyButton {
     font-family: "Ubuntu Mono", monospace;
     font-size: 20px;
     width: 100%;
-    color: white;
+    box-shadow: var(--shadow);
+    color: var(--text);
     text-align: center;
     height: 40px;
     margin-bottom: 10px;
@@ -290,13 +248,14 @@ main {
 }
 
 .fancyButton:hover {
-    background-color: #ffffff43;
+    background-color: var(--button-hover);
     scale: var(--scale-hover);
     cursor: pointer;
 }
 
 .fancyTitle {
-    font-size: 22px;
+    color: var(--text);
+    font-size: 26px;
     position: relative;
     font-weight: bold;
     text-align: center;
@@ -304,7 +263,7 @@ main {
 }
 
 .fancyDescription {
-    color: rgb(170, 170, 170);
+    color: var(--text);
     text-align: center;
     position: relative;
     font-size: 14px;
@@ -314,9 +273,19 @@ main {
     font-family: "Ubuntu Mono", monospace;
 }
 
+.fancySmallButton{
+    text-decoration: underline;
+    color: var(--secondary-text);
+}
+
+.fancySmallButton:hover{
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 900px) {
-    .main {
-        width: 95%;
+    main {
+        max-width: 75%;
+        width: 75%;
     }
 
     button.sidebar {

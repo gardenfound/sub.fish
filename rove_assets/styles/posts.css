@@ -1,0 +1,320 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.app-container {
+    height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    user-select: none;
+}
+
+#background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; 
+    z-index: -1; 
+    filter: var(--background-image-blur); 
+}
+
+.background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%; 
+    height: auto; 
+    min-height: 100vh; 
+    transform: translate(-50%, -50%); 
+    background-size: cover; 
+    background-position: center; 
+    transition: all 0.5s ease; 
+    opacity: var(--background-image-opacity); 
+}
+
+#post-container {
+    flex: 1;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+    cursor: grab; 
+    padding: 0;
+}
+
+#post-container.grabbing {
+    cursor: grabbing;
+}
+
+#post-container::-webkit-scrollbar {
+    display: none;  
+}
+
+.post {
+    height: 100vh;
+    position: relative;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-behavior: smooth;
+    padding: 20px;
+}
+
+.post img {
+    max-height: calc(100% - 120px);
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 20px;
+}
+
+.loading {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--overlay-bg);
+    backdrop-filter: blur(20px);
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: none;
+    z-index: 1001;
+}
+
+.global-actions {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 999;
+}
+
+.action-button {
+    width: 44px;
+    height: 44px;
+    background: var(--overlay-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+
+.action-button:hover {
+    background: var(--button-hover);
+}
+
+.action-button svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--icon-fill);
+    transition: transform var(--transition-speed) ease;
+}
+
+.action-button:hover svg {
+    transform: scale(1.1);
+}
+
+.no-posts-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--overlay-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+    z-index: 999;
+    display: none;
+}
+
+.no-posts-popup.active {
+    display: block;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.no-posts-icon {
+    width: 48px;
+    height: 48px;
+    fill: var(--icon-fill);
+}
+
+.popup-message {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.popup-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.popup-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    background: var(--overlay-bg);
+    color: var(--text-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+
+.popup-button:hover {
+    background: var(--button-hover);
+    transform: scale(1.05)
+}
+
+.popup-button svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--icon-fill);
+}
+
+.post img, .post video {
+    max-height: calc(100% - 80px);
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.post-actions-container {
+    position: absolute; /* Position buttons above the post info */
+    bottom: 16px; /* Distance from the top of the post */
+    left: 16px; /* Distance from the right side of the post */
+    z-index: 10; /* Ensure buttons are on top */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 8px;
+    max-width: calc(100% - 90px ); /* Fit the buttons' width automatically */
+}
+
+.post-info {
+    position: flex;
+    background: var(--overlay-bg);
+    backdrop-filter: blur(10px);
+    padding: 12px;
+    border-radius: 16px;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.post-info[style*="display: none"] + .post-actions {
+    bottom: 16px; 
+}
+
+.post-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-avatar svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--icon-fill);
+}
+
+.user-info {
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.user-name {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.upload-date {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.post-actions {
+    position: absolute;
+    left: 16px;
+    bottom: calc(80px + 20px);
+    display: flex;
+    flex-direction: column;  
+    gap: 20px;  
+    transition: bottom 0.3s ease;
+}
+
+.post-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #999;
+}
+
+.tag {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+.show-more-tags {
+    cursor: pointer;
+    font-size: 12px;
+    background-color: transparent;
+    margin-top: 3px;
+    border: none;
+    color: white;
+}
+
+.show-more-tags:hover {
+    color: #fff8;
+}

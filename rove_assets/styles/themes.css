@@ -1,0 +1,144 @@
+:root,
+[data-theme="dark"] {
+    --bg-color: #000;
+    --text-color: #fff;
+    --overlay-bg: #00000080;
+    --icon-fill: #fff;
+    --input-text: #fff;
+    --button-hover: #20202099;
+    
+    --sheet-button: #ffffff1a;
+    --sheet-button-hover: #ffffff33;
+    --sheet-button-active: #ffffff4d;
+    
+    --blur: blur(10px);
+    --background-image-opacity: 0.2;
+    --background-image-blur: blur(20px);
+    --transition-speed: 0.3s;
+}
+
+[data-theme="light"] {
+    --bg-color: #fff;
+    --text-color: #000;
+    --overlay-bg: #ffffffb3;
+    --icon-fill: #000;
+    --input-text: #000;
+    --button-hover: #0000001a;
+
+    --sheet-button: #0000001a;
+    --sheet-button-hover: #00000033;
+    --sheet-button-active: #0000004d;
+
+    --blur: blur(10px);
+    --background-image-opacity: 0.6;
+    --background-image-blur: blur(20px);
+    --transition-speed: 0.3s;
+}
+
+[data-theme="ph"] {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --overlay-bg: #00000080;
+    --icon-fill: #ff9000;
+    --input-text: #ffffff;
+    --button-hover: #371f0099;
+
+    --sheet-button: #ffffff1a;
+    --sheet-button-hover: #ffa26433;
+    --sheet-button-active: #ff66004d;
+    
+    --blur: blur(10px);
+    --background-image-opacity: 0.2;
+    --background-image-blur: blur(20px);
+    --transition-speed: 0.3s;
+}
+
+[data-theme="green"] {
+    --bg-color: #0c1317;
+    --text-color: #e9edef;
+    --overlay-bg: #202c33cc;
+    --icon-fill: #00a884;
+    --input-text: #e9edef;
+    --button-hover: #00a88433;
+
+    --sheet-button: #e9edef1a;
+    --sheet-button-hover: #e9edef33;
+    --sheet-button-active: #e9edef4d;
+
+    --blur: blur(10px);
+    --background-image-opacity: 0.2;
+    --background-image-blur: blur(20px);
+    --transition-speed: 0.3s;
+}
+
+[data-theme="solar"] {
+    --bg-color: #110700;
+    --text-color: #ffe7c7;
+    --overlay-bg: #28140ae6;
+    --icon-fill: #ffb347;
+    --input-text: #ffe7c7;
+    --button-hover: #783214d9;
+
+    --sheet-button: #50280ab3;
+    --sheet-button-hover: #783214d9;
+    --sheet-button-active: #823c1ee6;
+
+    --blur: blur(10px);
+    --background-image-opacity: 0.2;
+    --background-image-blur: blur(20px);
+    --transition-speed: 0.3s;
+}
+
+[data-theme="seductive"] {
+    --bg-color: #050006;
+    --text-color: #ff66cc;
+    --overlay-bg: #0f0f19e6;
+    --icon-fill: #cc66ff;
+    --input-text: #ff66cc;
+    --button-hover: #280a3cd9;
+
+    --sheet-button: #141414cc;
+    --sheet-button-hover: #2d0f41e6;
+    --sheet-button-active: #321446;
+
+    --blur: blur(10px);
+    --background-image-opacity: 0.2;
+    --background-image-blur: blur(20px);
+    --transition-speed: 0.3s;
+}
+
+[data-theme="abyssal"] {
+    --bg-color: #00060f;
+    --text-color: #aaf3ff;
+    --overlay-bg: #0a1419f2;
+    --icon-fill: #66e5e5;
+    --input-text: #aaf3ff;
+    --button-hover: #14323ccc;
+
+    --sheet-button: #0a1e28b3;
+    --sheet-button-hover: #14323ccc;
+    --sheet-button-active: #14323c;
+
+    --blur: blur(10px);
+    --background-image-opacity: 0.2;
+    --background-image-blur: blur(20px);
+    --transition-speed: 0.3s;
+}
+
+[data-theme="forest"] {
+    --bg-color: #0a0c02;
+    --text-color: #d4ffb3;
+    --overlay-bg: #1e2814e6;
+    --icon-fill: #80a840;
+    --input-text: #d4ffb3;
+    --button-hover: #3c501ed9;
+
+    --sheet-button: #283c14b3;
+    --sheet-button-hover: #3c501ed9;
+    --sheet-button-active: #465a28e6;
+
+    --blur: blur(10px);
+    --background-image-opacity: 0.2;
+    --background-image-blur: blur(20px);
+    --transition-speed: 0.3s;
+}

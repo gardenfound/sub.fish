@@ -7,10 +7,11 @@
     <title>subtist</title>
     <link rel="stylesheet" href="assets/styles/base.css">
     <link rel="stylesheet" href="assets/styles/home.css">
+    <link rel="stylesheet" href="assets/styles/themes.css">
     <script defer src="assets/scripts/base.js"></script>
     <script defer src="assets/scripts/loadScripts.js"></script>
     <script defer src="assets/scripts/setupThemePicker.js"></script>
-    <link rel="shortcut icon" href="assets/images/branding/logo_square.png" type="image/png">
+    <link rel="shortcut icon" href="assets/images/branding/logo_favicon.png" type="image/png">
 
     <script data-goatcounter="https://gardenfound.goatcounter.com/count"></script>
     <script src="assets/scripts/goatcounter.js"></script>
@@ -44,7 +45,7 @@
             <img src="assets/images/branding/logo_cropped.png" alt="logo">
             <h1>subtist</h1>
         </div>
-        <h2><span style="color:#ff6161">swift</span> and <span style="color:#8153ff">silent</span></h2>
+        <h2><span id="header-swift">swift</span> and <span id="header-silent">silent</span></h2>
     </header>
     <button class="sidebar" id="sideBarOpen" onclick="toggleSidebar(true)">☰</button>
     <sidebar id="sideBar">
@@ -55,6 +56,7 @@
         <button onclick="window.location.href = 'home'">Home</button>
         <button onclick="window.location.href = 'presets'">Presets</button>
         <button onclick="window.location.href = 'editor'">Editor</button>
+        <button onclick="window.location.href = 'rove'">Rove</button>
         <br>
         <h1>Links</h1>
         <button onclick="window.location.href = 'https\:\/\/github.com/gardenfound/subtist'">GitHub</button>
@@ -110,21 +112,33 @@
         <div id="customiseSettings">
             <label for="theme-select">Theme:
                 <select id="theme-select">
-                    <option value="">subtist</option>
-                    <option value="red">Red</option>
-                    <option value="orange">Orange</option>
-                    <option value="yellow">Yellow</option>
-                    <option value="green">Green</option>
-                    <option value="cyan">Cyan</option>
-                    <option value="blue">Blue</option>
-                    <option value="purple">Purple</option>
-                    <option value="pink">Pink</option>
-                    <option value="rainbow">Rainbow</option>
-                    <option value="monochrome">Monochrome</option>
-                    <option value="bimbo">Bimbo</option>
-                    <option value="summer-haze">Summer Haze</option>
-                    <option value="matrix">Matrix</option>
-                    <option value="hub">Hub</option>
+                    <optgroup label="Basic">
+                        <option value="">subtist</option>
+                        <option value="red">Red</option>
+                        <option value="orange">Orange</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="green">Green</option>
+                        <option value="cyan">Cyan</option>
+                        <option value="blue">Blue</option>
+                        <option value="purple">Purple</option>
+                        <option value="pink">Pink</option>
+                        <option value="monochrome">Monochrome</option>
+                        <option value="light">Light</option>
+                    </optgroup>
+                    <optgroup label="Special">
+                        <option value="bimbo">Bimbo</option>
+                        <option value="summer-haze">Summer Haze</option>
+                    </optgroup>
+                    <optgroup label="Neon">
+                        <option value="solar">Solar</option>
+                        <option value="seductive">Seductive</option>
+                        <option value="abyssal">Abyssal</option>
+                        <option value="forest">Forest</option>
+                    </optgroup>
+                    <optgroup label="Brands">
+                        <option value="sexstories">sexstories.com</option>
+                        <option value="pornhub">PornHub</option>
+                    </optgroup>
                 </select>
             </label>
         </div>
@@ -136,6 +150,8 @@
         <div id="modal" class="modal">
             <div id="modal-content" class="modal-content">
                 <h2 id="scriptName"></h2>
+                <p id="scriptAuthor"></p>
+                <p id="scriptEstimatedReadingTime"></p>
                 <p id="scriptDescription"></p>
                 <p id="scriptCode"></p>
                 <button id="copyButton"><b>Copy Script</b></button>
