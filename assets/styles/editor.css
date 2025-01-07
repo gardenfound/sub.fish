@@ -57,10 +57,6 @@
     transition: opacity var(--transition-speed) ease;
 }
 
-.submitButton {
-    right: 65px;
-}
-
 input#inputName{
     margin-top: 50px;
 }
