@@ -6,12 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const editScript = document.getElementById('inputScript');
     const editAuthor = document.getElementById('inputAuthor');
     const deleteButton = document.getElementById('deleteButton');
-    const submitButton = document.getElementById('submitButton');
     modal.style.display = 'none';
-
-    // If I notice any abuse of this webhook link i will shut it down immediately
-    // Keep it fun for everyone, don't abuse it.
-    const webhookUrl = 'https://discord.com/api/webhooks/1272955475079729162/eLyjo4UZWRTSdTpg1IXYcooK-ZPRT37lxUgNDvGX1mox1m3hw8b9UaJQqmkvSNdIavWZ';
 
     let data = {
         scripts: [
@@ -72,9 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
         editScript.value = script.script;
 
         deleteButton.onclick = () => { remove(index) }; // calling the method directly calls it here for some reason??? took me hours to figure that out
-        submitButton.onclick = () => {
-            submitScript(webhookUrl, editTitle.value, editDescription.value, editScript.value, editAuthor.value);
-        };
 
         modal.style.display = "flex";
         setTimeout(() => {
@@ -130,35 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
             closeModal();
         }
     });
-
-    function submitScript(webhookUrl, title, description, script, author) {
-            if(title == "Welcome to the editor!"){
-                showNotification('Can\'t upload this one!')
-                return;
-            }
-
-            if(webhookUrl.length < 2 || title.length < 2 || description.length < 2 || script.length < 2 || author.length < 2){
-                showNotification('Field Empty, Can\'t Submit!')
-                return;
-            }
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", webhookUrl, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify({
-                content: null,
-                embeds: [
-                    {
-                        title: title,
-                        description: `**${description}**\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n\`\`${script}\`\`\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\nAuthor: **${author}**`,
-                        color: 16736609
-                    }
-                ],
-                attachments: []
-            }));
-
-            showNotification('Script Submitted! (Discord)');
-    }
 
     displayScripts();
 
